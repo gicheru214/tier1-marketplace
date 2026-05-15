@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tier1 · Operator workspace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    fontFamily: { sans:['Inter','sans-serif'], serif:['Fraunces','serif'] },
+    colors: {
+      ink:{950:'#0A0E1A',900:'#0F1524',800:'#171F33',700:'#222C45'},
+      paper:'#F7F5EF', bone:'#EEEAE0',
+      gold:{500:'#C9A24B',600:'#B6902F'},
+      moss:{500:'#4F7A5B',600:'#3F6249'},
+    }
+  }}}
+</script>
+<style>
+  body { font-family:'Inter',sans-serif; background:#F7F5EF; color:#0F1524; }
+  .font-serif { font-family:'Fraunces',serif; letter-spacing:-0.02em; }
+  .nav-link { display:flex; align-items:center; gap:.7rem; padding:.6rem .8rem; border-radius:.65rem; font-size:.875rem; color:#bcc0ce; }
+  .nav-link:hover { background: rgba(255,255,255,0.05); color:#F7F5EF; }
+  .nav-link.active { background:#C9A24B; color:#0A0E1A; font-weight:600; }
+  .nav-link.active svg { stroke:#0A0E1A; }
+  .pill { display:inline-flex; align-items:center; padding:.2rem .55rem; border-radius:999px; font-size:.7rem; font-weight:500; }
+  .view { display:none; }
+  .view.active { display:block; }
+</style>
+</head>
+<body class="antialiased min-h-screen">
+
+<div class="flex min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 bg-ink-950 text-paper flex flex-col shrink-0">
+    <div class="px-5 py-5 border-b border-white/5">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-md bg-paper flex items-center justify-center">
+          <span class="font-serif font-semibold text-ink-950 text-sm">T</span>
+          <span class="w-1 h-1 bg-gold-500 rounded-full ml-0.5"></span>
+        </div>
+        <span class="font-serif text-xl font-semibold tracking-tight">Tier1</span>
+      </a>
+      <div class="mt-4 flex items-center gap-2.5 bg-white/5 rounded-lg p-2.5">
+        <div class="w-8 h-8 rounded-md bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center text-ink-950 text-xs font-bold">AK</div>
+        <div class="min-w-0">
+          <div class="text-sm font-semibold truncate">Aarav K.</div>
+          <div class="text-[10px] text-bone/60 flex items-center gap-1">Operator
+            <span class="w-1 h-1 rounded-full bg-moss-500"></span>
+            <span class="text-moss-500">Available</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="flex-1 px-3 py-4 space-y-1">
+      <button class="nav-link active w-full text-left" data-view="dashboard">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        Dashboard
+      </button>
+      <button class="nav-link w-full text-left" data-view="briefs">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        Open briefs
+        <span class="ml-auto pill bg-gold-500 text-ink-950">12</span>
+      </button>
+      <button class="nav-link w-full text-left" data-view="applications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8"/></svg>
+        My applications
+        <span class="ml-auto pill bg-paper text-ink-950">4</span>
+      </button>
+      <button class="nav-link w-full text-left" data-view="work">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM9 12l2 2 4-4"/></svg>
+        Active work
+      </button>
+      <button class="nav-link w-full text-left" data-view="earnings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Earnings
+      </button>
+      <button class="nav-link w-full text-left" data-view="profile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </button>
+    </nav>
+
+    <div class="p-3 border-t border-white/5">
+      <a href="app.html" class="nav-link block">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+        Sign out
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 min-w-0">
+
+    <!-- TOPBAR -->
+    <div class="bg-paper border-b border-ink-900/5 px-6 lg:px-10 h-16 flex items-center justify-between">
+      <h1 id="pageTitle" class="font-serif text-2xl font-semibold">Dashboard</h1>
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-2 text-xs">
+          <span class="text-ink-700">Status:</span>
+          <button class="pill bg-moss-500/15 text-moss-600">● Available</button>
+        </div>
+        <button onclick="showView('briefs')" class="text-sm bg-ink-950 hover:bg-ink-800 text-paper px-4 py-2 rounded-full font-medium">Browse briefs</button>
+      </div>
+    </div>
+
+    <!-- DASHBOARD VIEW -->
+    <section data-view="dashboard" class="view active px-6 lg:px-10 py-8">
+      <!-- welcome banner -->
+      <div class="bg-ink-950 text-paper rounded-2xl p-6 mb-6 flex items-center justify-between gap-4">
+        <div>
+          <div class="text-xs uppercase tracking-widest text-bone/60">Welcome back</div>
+          <h2 class="font-serif text-2xl font-semibold mt-1">Aarav — 3 new briefs match your profile this week.</h2>
+        </div>
+        <button onclick="showView('briefs')" class="bg-gold-500 hover:bg-gold-600 text-ink-950 font-semibold px-5 py-2.5 rounded-full text-sm whitespace-nowrap">See briefs</button>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="text-xs uppercase tracking-widest text-ink-700">Earned this month</div>
+          <div class="font-serif text-3xl font-semibold mt-1">$14,280</div>
+          <div class="text-xs text-moss-600 mt-1">+22% vs Apr</div>
+        </div>
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="text-xs uppercase tracking-widest text-ink-700">Active engagements</div>
+          <div class="font-serif text-3xl font-semibold mt-1">2</div>
+          <div class="text-xs text-ink-700 mt-1">26 hrs scheduled</div>
+        </div>
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="text-xs uppercase tracking-widest text-ink-700">Rating</div>
+          <div class="font-serif text-3xl font-semibold mt-1">4.96 <span class="text-gold-500 text-xl">★</span></div>
+          <div class="text-xs text-ink-700 mt-1">From 23 clients</div>
+        </div>
+        <div class="bg-gold-500 text-ink-950 rounded-2xl p-5">
+          <div class="text-xs uppercase tracking-widest">Match rate</div>
+          <div class="font-serif text-3xl font-semibold mt-1">Top 4%</div>
+          <div class="text-xs mt-1 opacity-80">Tier1 talent ranking</div>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 bg-white border border-ink-900/10 rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-serif text-xl font-semibold">Top briefs for you</h3>
+            <button onclick="showView('briefs')" class="text-xs font-semibold text-ink-700 hover:text-ink-950">View all 12 →</button>
+          </div>
+          <div class="divide-y divide-ink-900/5">
+            <div class="py-4 flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-moss-500/15 flex items-center justify-center shrink-0">
+                <span class="text-moss-600 text-xs font-semibold">98%</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold">Series C 3-statement model + board deck</div>
+                <div class="text-xs text-ink-700 mt-0.5">Northbeam, Inc. · FP&A · 4–12 weeks · $180-240/hr</div>
+                <p class="text-sm text-ink-800 mt-2">Polished 3-statement w/ driver-based assumptions + 22-slide board deck. Diligence kicks off Jun 2.</p>
+              </div>
+              <button class="text-xs font-semibold bg-ink-950 hover:bg-ink-800 text-paper px-3.5 py-2 rounded-full">Apply</button>
+            </div>
+            <div class="py-4 flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-moss-500/15 flex items-center justify-center shrink-0">
+                <span class="text-moss-600 text-xs font-semibold">94%</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold">Headcount & opex planning 2026</div>
+                <div class="text-xs text-ink-700 mt-0.5">Crestlane Health · FP&A · 6 weeks · $200-260/hr</div>
+                <p class="text-sm text-ink-800 mt-2">Build a zero-based 2026 plan; need someone fluent in driver models and exec-level board narrative.</p>
+              </div>
+              <button class="text-xs font-semibold bg-ink-950 hover:bg-ink-800 text-paper px-3.5 py-2 rounded-full">Apply</button>
+            </div>
+            <div class="py-4 flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-gold-500/15 flex items-center justify-center shrink-0">
+                <span class="text-gold-600 text-xs font-semibold">88%</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold">CFO-on-demand for pre-Series B startup</div>
+                <div class="text-xs text-ink-700 mt-0.5">Hatcher Mobility · FP&A · Ongoing fractional · $230/hr</div>
+                <p class="text-sm text-ink-800 mt-2">~12 hrs/week. Own financial model, board prep, and investor updates.</p>
+              </div>
+              <button class="text-xs font-semibold bg-ink-950 hover:bg-ink-800 text-paper px-3.5 py-2 rounded-full">Apply</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+            <h3 class="font-serif text-lg font-semibold">Profile strength</h3>
+            <div class="mt-4 flex items-end justify-between mb-2 text-sm">
+              <span class="text-ink-700">88% complete</span>
+              <span class="font-semibold">Strong</span>
+            </div>
+            <div class="h-2 bg-bone rounded-full overflow-hidden"><div class="h-full bg-gold-500 w-[88%]"></div></div>
+            <ul class="mt-5 space-y-2 text-sm">
+              <li class="flex items-center gap-2 text-moss-600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Verified F500 tenure</li>
+              <li class="flex items-center gap-2 text-moss-600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Two writing samples</li>
+              <li class="flex items-center gap-2 text-moss-600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Case study completed</li>
+              <li class="flex items-center gap-2 text-ink-700"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>Add a 60-second intro video</li>
+            </ul>
+            <button onclick="showView('profile')" class="mt-5 w-full bg-ink-950 hover:bg-ink-800 text-paper text-sm font-semibold py-2.5 rounded-full">Improve profile</button>
+          </div>
+
+          <div class="bg-ink-950 text-paper rounded-2xl p-6">
+            <h3 class="font-serif text-lg font-semibold">Next payout</h3>
+            <div class="font-serif text-3xl font-semibold text-gold-500 mt-2">$5,840</div>
+            <div class="text-xs text-bone/70 mt-1">Releases Friday May 22</div>
+            <div class="mt-4 pt-4 border-t border-white/10 text-xs text-bone/70 flex items-center justify-between">
+              <span>Connected: Stripe ••••42</span>
+              <button class="underline">Change</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRIEFS VIEW -->
+    <section data-view="briefs" class="view px-6 lg:px-10 py-8">
+      <div class="flex flex-col lg:flex-row lg:items-center gap-3 mb-6">
+        <input class="flex-1 bg-white border border-ink-900/10 rounded-xl px-4 py-2.5 text-sm" placeholder="Search briefs…" />
+        <div class="flex gap-2 flex-wrap">
+          <button class="pill bg-ink-950 text-paper">All</button>
+          <button class="pill bg-white border border-ink-900/10">FP&A</button>
+          <button class="pill bg-white border border-ink-900/10">Treasury</button>
+          <button class="pill bg-white border border-ink-900/10">Controllership</button>
+          <button class="pill bg-white border border-ink-900/10">M&A</button>
+          <button class="pill bg-white border border-ink-900/10">Remote</button>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="flex items-center justify-between">
+            <span class="pill bg-moss-500/15 text-moss-600">98% match</span>
+            <span class="text-xs text-ink-700">Posted 2d ago</span>
+          </div>
+          <h3 class="font-semibold mt-3">Series C 3-statement model + board deck</h3>
+          <div class="text-xs text-ink-700 mt-1">Northbeam, Inc. · FP&A · 4–12 weeks</div>
+          <p class="text-sm text-ink-800 mt-3">Polished 3-statement w/ driver-based assumptions + 22-slide board deck. Diligence kicks off Jun 2.</p>
+          <div class="mt-4 pt-4 border-t border-ink-900/5 flex items-center justify-between">
+            <div class="font-serif text-lg font-semibold">$180–240<span class="text-xs text-ink-700">/hr</span></div>
+            <div class="flex gap-2">
+              <button class="text-xs border border-ink-900/15 hover:bg-bone px-3 py-1.5 rounded-full">Save</button>
+              <button class="text-xs bg-ink-950 hover:bg-ink-800 text-paper px-3 py-1.5 rounded-full font-semibold">Apply</button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="flex items-center justify-between">
+            <span class="pill bg-moss-500/15 text-moss-600">94% match</span>
+            <span class="text-xs text-ink-700">Posted 3d ago</span>
+          </div>
+          <h3 class="font-semibold mt-3">Headcount & opex planning 2026</h3>
+          <div class="text-xs text-ink-700 mt-1">Crestlane Health · FP&A · 6 weeks</div>
+          <p class="text-sm text-ink-800 mt-3">Zero-based 2026 plan; need someone fluent in driver models and exec-level board narrative.</p>
+          <div class="mt-4 pt-4 border-t border-ink-900/5 flex items-center justify-between">
+            <div class="font-serif text-lg font-semibold">$200–260<span class="text-xs text-ink-700">/hr</span></div>
+            <div class="flex gap-2">
+              <button class="text-xs border border-ink-900/15 hover:bg-bone px-3 py-1.5 rounded-full">Save</button>
+              <button class="text-xs bg-ink-950 hover:bg-ink-800 text-paper px-3 py-1.5 rounded-full font-semibold">Apply</button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="flex items-center justify-between">
+            <span class="pill bg-gold-500/20 text-gold-600">88% match</span>
+            <span class="text-xs text-ink-700">Posted 4d ago</span>
+          </div>
+          <h3 class="font-semibold mt-3">CFO-on-demand for pre-Series B startup</h3>
+          <div class="text-xs text-ink-700 mt-1">Hatcher Mobility · FP&A · Ongoing</div>
+          <p class="text-sm text-ink-800 mt-3">~12 hrs/week. Own financial model, board prep, and investor updates.</p>
+          <div class="mt-4 pt-4 border-t border-ink-900/5 flex items-center justify-between">
+            <div class="font-serif text-lg font-semibold">$230<span class="text-xs text-ink-700">/hr</span></div>
+            <div class="flex gap-2">
+              <button class="text-xs border border-ink-900/15 hover:bg-bone px-3 py-1.5 rounded-full">Save</button>
+              <button class="text-xs bg-ink-950 hover:bg-ink-800 text-paper px-3 py-1.5 rounded-full font-semibold">Apply</button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="flex items-center justify-between">
+            <span class="pill bg-gold-500/20 text-gold-600">82% match</span>
+            <span class="text-xs text-ink-700">Posted yesterday</span>
+          </div>
+          <h3 class="font-semibold mt-3">M&A integration plan (carve-out)</h3>
+          <div class="text-xs text-ink-700 mt-1">Vector Industries · M&A · 8 weeks</div>
+          <p class="text-sm text-ink-800 mt-3">Day-1 / day-100 plan for a $180M carve-out. Synergy bridge + TSA scoping.</p>
+          <div class="mt-4 pt-4 border-t border-ink-900/5 flex items-center justify-between">
+            <div class="font-serif text-lg font-semibold">$260–320<span class="text-xs text-ink-700">/hr</span></div>
+            <div class="flex gap-2">
+              <button class="text-xs border border-ink-900/15 hover:bg-bone px-3 py-1.5 rounded-full">Save</button>
+              <button class="text-xs bg-ink-950 hover:bg-ink-800 text-paper px-3 py-1.5 rounded-full font-semibold">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPLICATIONS VIEW -->
+    <section data-view="applications" class="view px-6 lg:px-10 py-8">
+      <div class="bg-white border border-ink-900/10 rounded-2xl overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-bone text-ink-700 text-xs uppercase tracking-widest">
+            <tr><th class="text-left font-semibold px-6 py-3">Brief</th><th class="text-left font-semibold px-6 py-3">Client</th><th class="text-left font-semibold px-6 py-3">Applied</th><th class="text-right font-semibold px-6 py-3">Status</th><th class="text-right font-semibold px-6 py-3"></th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-900/5">
+            <tr>
+              <td class="px-6 py-4"><div class="font-semibold">Series C 3-statement model</div><div class="text-xs text-ink-700">FP&A · $180-240/hr</div></td>
+              <td class="px-6 py-4">Northbeam, Inc.</td>
+              <td class="px-6 py-4 text-ink-700">2d ago</td>
+              <td class="px-6 py-4 text-right"><span class="pill bg-gold-500/20 text-gold-600">Shortlisted</span></td>
+              <td class="px-6 py-4 text-right"><button class="text-xs font-semibold underline">Open</button></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4"><div class="font-semibold">Headcount & opex planning 2026</div><div class="text-xs text-ink-700">FP&A · $200-260/hr</div></td>
+              <td class="px-6 py-4">Crestlane Health</td>
+              <td class="px-6 py-4 text-ink-700">3d ago</td>
+              <td class="px-6 py-4 text-right"><span class="pill bg-ink-900/10 text-ink-800">In review</span></td>
+              <td class="px-6 py-4 text-right"><button class="text-xs font-semibold underline">Open</button></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4"><div class="font-semibold">CFO-on-demand</div><div class="text-xs text-ink-700">FP&A · $230/hr</div></td>
+              <td class="px-6 py-4">Hatcher Mobility</td>
+              <td class="px-6 py-4 text-ink-700">4d ago</td>
+              <td class="px-6 py-4 text-right"><span class="pill bg-moss-500/15 text-moss-600">Intro call</span></td>
+              <td class="px-6 py-4 text-right"><button class="text-xs font-semibold underline">Open</button></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4"><div class="font-semibold">Quarterly close clean-up</div><div class="text-xs text-ink-700">Controllership · $200/hr</div></td>
+              <td class="px-6 py-4">Banyan Foods</td>
+              <td class="px-6 py-4 text-ink-700">1w ago</td>
+              <td class="px-6 py-4 text-right"><span class="pill bg-ink-900/10 text-ink-700">Not selected</span></td>
+              <td class="px-6 py-4 text-right"><button class="text-xs font-semibold underline">Feedback</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ACTIVE WORK VIEW -->
+    <section data-view="work" class="view px-6 lg:px-10 py-8 space-y-5">
+      <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-semibold">Q2 forecast refresh</h3>
+              <span class="pill bg-moss-500/15 text-moss-600">Active</span>
+            </div>
+            <div class="text-xs text-ink-700 mt-1">Northbeam, Inc. · $245/hr · started May 6</div>
+          </div>
+          <div class="text-right">
+            <div class="font-serif text-2xl font-semibold">$8,640</div>
+            <div class="text-[10px] uppercase tracking-widest text-ink-700">earned so far</div>
+          </div>
+        </div>
+        <div class="mt-5">
+          <div class="flex items-center justify-between text-xs text-ink-700 mb-1">
+            <span>2 of 4 milestones</span>
+            <span>50%</span>
+          </div>
+          <div class="h-2 bg-bone rounded-full overflow-hidden"><div class="h-full bg-gold-500 w-1/2"></div></div>
+        </div>
+        <div class="mt-5 grid sm:grid-cols-4 gap-2 text-xs">
+          <div class="bg-moss-500/10 text-moss-600 rounded-lg p-2.5"><div class="font-semibold">✓ Driver tree v1</div><div class="opacity-70 mt-0.5">$2,200</div></div>
+          <div class="bg-moss-500/10 text-moss-600 rounded-lg p-2.5"><div class="font-semibold">✓ Headcount map</div><div class="opacity-70 mt-0.5">$2,800</div></div>
+          <div class="bg-gold-500/15 text-gold-600 rounded-lg p-2.5"><div class="font-semibold">⏳ Forecast v2</div><div class="opacity-70 mt-0.5">Due May 21</div></div>
+          <div class="bg-bone text-ink-700 rounded-lg p-2.5"><div class="font-semibold">○ Board version</div><div class="opacity-70 mt-0.5">Due Jun 4</div></div>
+        </div>
+        <div class="mt-5 pt-5 border-t border-ink-900/5 flex items-center gap-2">
+          <button class="text-xs font-semibold bg-ink-950 hover:bg-ink-800 text-paper px-3.5 py-2 rounded-full">Submit milestone</button>
+          <button class="text-xs font-semibold border border-ink-900/15 hover:bg-bone px-3.5 py-2 rounded-full">Log hours</button>
+          <button class="text-xs font-semibold text-ink-700 hover:text-ink-950 ml-auto">Message client</button>
+        </div>
+      </div>
+
+      <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-semibold">Monthly board pack</h3>
+              <span class="pill bg-ink-900/10 text-ink-800">Recurring</span>
+            </div>
+            <div class="text-xs text-ink-700 mt-1">Hatcher Mobility · $230/hr · ~12 hrs/week</div>
+          </div>
+          <div class="text-right">
+            <div class="font-serif text-2xl font-semibold">$5,640</div>
+            <div class="text-[10px] uppercase tracking-widest text-ink-700">this month</div>
+          </div>
+        </div>
+        <div class="mt-5 pt-5 border-t border-ink-900/5 flex items-center gap-2">
+          <button class="text-xs font-semibold border border-ink-900/15 hover:bg-bone px-3.5 py-2 rounded-full">Log hours</button>
+          <button class="text-xs font-semibold text-ink-700 hover:text-ink-950 ml-auto">Pause week</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- EARNINGS VIEW -->
+    <section data-view="earnings" class="view px-6 lg:px-10 py-8">
+      <div class="grid lg:grid-cols-4 gap-5 mb-6">
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="text-xs uppercase tracking-widest text-ink-700">This month</div>
+          <div class="font-serif text-3xl font-semibold mt-1">$14,280</div>
+        </div>
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="text-xs uppercase tracking-widest text-ink-700">YTD</div>
+          <div class="font-serif text-3xl font-semibold mt-1">$68,940</div>
+        </div>
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="text-xs uppercase tracking-widest text-ink-700">In escrow</div>
+          <div class="font-serif text-3xl font-semibold mt-1">$5,840</div>
+        </div>
+        <div class="bg-gold-500 text-ink-950 rounded-2xl p-5">
+          <div class="text-xs uppercase tracking-widest">Next payout</div>
+          <div class="font-serif text-3xl font-semibold mt-1">Fri May 22</div>
+        </div>
+      </div>
+
+      <!-- chart -->
+      <div class="bg-white border border-ink-900/10 rounded-2xl p-6 mb-6">
+        <h3 class="font-semibold mb-4">Monthly earnings</h3>
+        <div class="flex items-end gap-3 h-40">
+          <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full bg-bone rounded-t" style="height:38%"></div><div class="text-[11px] text-ink-700">Jan</div></div>
+          <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full bg-bone rounded-t" style="height:52%"></div><div class="text-[11px] text-ink-700">Feb</div></div>
+          <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full bg-bone rounded-t" style="height:46%"></div><div class="text-[11px] text-ink-700">Mar</div></div>
+          <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full bg-ink-700 rounded-t" style="height:68%"></div><div class="text-[11px] text-ink-700">Apr</div></div>
+          <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full bg-gold-500 rounded-t" style="height:88%"></div><div class="text-[11px] text-ink-700 font-semibold">May</div></div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-ink-900/10 rounded-2xl overflow-hidden">
+        <div class="px-6 py-4 border-b border-ink-900/5 flex items-center justify-between">
+          <h3 class="font-semibold">Payouts</h3>
+          <button class="text-xs font-semibold border border-ink-900/15 hover:bg-bone px-3 py-1.5 rounded-full">Download 1099</button>
+        </div>
+        <table class="w-full text-sm">
+          <thead class="bg-bone text-ink-700 text-xs uppercase tracking-widest">
+            <tr><th class="text-left font-semibold px-6 py-3">Date</th><th class="text-left font-semibold px-6 py-3">Client</th><th class="text-left font-semibold px-6 py-3">Milestone</th><th class="text-right font-semibold px-6 py-3">Amount</th><th class="text-right font-semibold px-6 py-3">Status</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-900/5">
+            <tr><td class="px-6 py-3">May 22</td><td class="px-6 py-3">Northbeam, Inc.</td><td class="px-6 py-3">Headcount map</td><td class="px-6 py-3 text-right font-semibold">$2,800</td><td class="px-6 py-3 text-right"><span class="pill bg-gold-500/20 text-gold-600">Scheduled</span></td></tr>
+            <tr><td class="px-6 py-3">May 15</td><td class="px-6 py-3">Hatcher Mobility</td><td class="px-6 py-3">Wk 2 retainer</td><td class="px-6 py-3 text-right font-semibold">$2,760</td><td class="px-6 py-3 text-right"><span class="pill bg-moss-500/15 text-moss-600">Paid</span></td></tr>
+            <tr><td class="px-6 py-3">May 8</td><td class="px-6 py-3">Northbeam, Inc.</td><td class="px-6 py-3">Driver tree v1</td><td class="px-6 py-3 text-right font-semibold">$2,200</td><td class="px-6 py-3 text-right"><span class="pill bg-moss-500/15 text-moss-600">Paid</span></td></tr>
+            <tr><td class="px-6 py-3">May 1</td><td class="px-6 py-3">Hatcher Mobility</td><td class="px-6 py-3">Wk 1 retainer</td><td class="px-6 py-3 text-right font-semibold">$2,880</td><td class="px-6 py-3 text-right"><span class="pill bg-moss-500/15 text-moss-600">Paid</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PROFILE VIEW -->
+    <section data-view="profile" class="view px-6 lg:px-10 py-8">
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-1">
+          <div class="bg-white border border-ink-900/10 rounded-2xl p-6 text-center">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center text-ink-950 text-2xl font-bold mx-auto">AK</div>
+            <h2 class="font-serif text-2xl font-semibold mt-4">Aarav K.</h2>
+            <div class="text-sm text-ink-700">Senior FP&A Lead</div>
+            <div class="text-xs text-ink-700 mt-1">11 yrs · ex-Amazon, ex-Salesforce</div>
+            <div class="mt-4 flex items-center justify-center gap-3 text-xs text-ink-800">
+              <span class="font-semibold">4.96 ★</span><span>·</span>
+              <span>128 jobs</span><span>·</span>
+              <span class="text-moss-600 font-semibold">Top 4%</span>
+            </div>
+            <button class="mt-5 w-full bg-ink-950 hover:bg-ink-800 text-paper text-sm font-semibold py-2.5 rounded-full">Preview public profile</button>
+          </div>
+          <div class="bg-white border border-ink-900/10 rounded-2xl p-6 mt-5">
+            <h3 class="font-semibold">Your rate</h3>
+            <div class="font-serif text-3xl font-semibold mt-2">$245<span class="text-base text-ink-700">/hr</span></div>
+            <div class="text-xs text-ink-700 mt-1">Benchmark: $210 – $270 for FP&A · 11 yrs</div>
+            <button class="mt-4 w-full text-sm border border-ink-900/15 hover:bg-bone py-2 rounded-full font-semibold">Adjust rate</button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 space-y-5">
+          <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+            <h3 class="font-semibold">About</h3>
+            <p class="text-sm text-ink-800 mt-3 leading-relaxed">Senior FP&A operator with 11 years at Amazon and Salesforce. Owned the 3-year plan for a $1.2B AWS sub-segment, built the headcount model the CFO presented to the board, and ran the quarterly forecast cycle for a 600-person org.</p>
+            <button class="mt-4 text-xs font-semibold underline">Edit</button>
+          </div>
+
+          <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+            <h3 class="font-semibold">Experience</h3>
+            <div class="mt-4 space-y-4">
+              <div class="flex gap-4">
+                <div class="w-10 h-10 rounded-lg bg-ink-950 text-paper flex items-center justify-center text-xs font-bold shrink-0">A</div>
+                <div>
+                  <div class="font-semibold text-sm">Senior FP&A Manager · Amazon</div>
+                  <div class="text-xs text-ink-700">2019 – 2024</div>
+                  <p class="text-sm text-ink-800 mt-1">Owned planning for AWS Storage sub-segment ($1.2B). Built driver-based model adopted org-wide.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="w-10 h-10 rounded-lg bg-ink-950 text-paper flex items-center justify-center text-xs font-bold shrink-0">S</div>
+                <div>
+                  <div class="font-semibold text-sm">FP&A Lead · Salesforce</div>
+                  <div class="text-xs text-ink-700">2015 – 2019</div>
+                  <p class="text-sm text-ink-800 mt-1">Sales Cloud BU FP&A. Led ARR forecast, comp plan modeling, and quarterly board prep.</p>
+                </div>
+              </div>
+            </div>
+            <button class="mt-4 text-xs font-semibold underline">+ Add experience</button>
+          </div>
+
+          <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+            <h3 class="font-semibold">Skills</h3>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="pill bg-bone text-ink-800">Driver models</span>
+              <span class="pill bg-bone text-ink-800">Anaplan</span>
+              <span class="pill bg-bone text-ink-800">3-statement</span>
+              <span class="pill bg-bone text-ink-800">Board decks</span>
+              <span class="pill bg-bone text-ink-800">Headcount</span>
+              <span class="pill bg-bone text-ink-800">SaaS metrics</span>
+              <span class="pill bg-bone text-ink-800">SQL</span>
+              <span class="pill bg-bone text-ink-800">Tableau</span>
+              <button class="pill border border-dashed border-ink-900/20 text-ink-700">+ Add</button>
+            </div>
+          </div>
+
+          <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+            <h3 class="font-semibold">Work samples</h3>
+            <div class="mt-3 grid sm:grid-cols-2 gap-3">
+              <div class="border border-ink-900/10 rounded-xl p-4">
+                <div class="text-xs uppercase tracking-widest text-ink-700">PDF · redacted</div>
+                <div class="font-semibold text-sm mt-1">Board pack – Q3 2023</div>
+                <div class="text-xs text-ink-700 mt-1">22 slides · downloaded 14 times</div>
+              </div>
+              <div class="border border-ink-900/10 rounded-xl p-4">
+                <div class="text-xs uppercase tracking-widest text-ink-700">XLSX · redacted</div>
+                <div class="font-semibold text-sm mt-1">3-statement template</div>
+                <div class="text-xs text-ink-700 mt-1">Driver tree + outputs</div>
+              </div>
+              <button class="border border-dashed border-ink-900/20 rounded-xl p-4 text-sm text-ink-700 hover:bg-bone">+ Upload sample</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  function showView(name) {
+    document.querySelectorAll('[data-view]').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('main section[data-view="'+name+'"]').forEach(el => el.classList.add('active'));
+    document.querySelectorAll('aside button[data-view]').forEach(el => {
+      el.classList.toggle('active', el.dataset.view === name);
+    });
+    const titles = { dashboard:'Dashboard', briefs:'Open briefs', applications:'My applications', work:'Active work', earnings:'Earnings', profile:'Profile' };
+    document.getElementById('pageTitle').textContent = titles[name] || 'Tier1';
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('aside button[data-view]').forEach(btn => {
+    btn.addEventListener('click', () => showView(btn.dataset.view));
+  });
+</script>
+
+</body>
+</html>
