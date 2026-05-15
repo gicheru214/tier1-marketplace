@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tier1 · Admin</title>
+<meta name="robots" content="noindex,nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans:['Inter','system-ui','sans-serif'], serif:['Fraunces','Georgia','serif'] },
+        colors: {
+          ink:   { 950:'#0A0E1A', 900:'#0F1524', 800:'#171F33', 700:'#222C45' },
+          paper: '#F7F5EF', bone:  '#EEEAE0',
+          gold:  { 500:'#C9A24B', 600:'#B6902F' },
+          moss:  { 500:'#4F7A5B', 600:'#3F6249' },
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family:'Inter',sans-serif; background:#F7F5EF; color:#0F1524; }
+  .font-serif { font-family:'Fraunces',serif; letter-spacing:-0.02em; }
+</style>
+</head>
+<body class="antialiased min-h-screen">
+
+<!-- NAV -->
+<header class="bg-paper border-b border-ink-900/5">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-md bg-ink-900 flex items-center justify-center">
+        <span class="font-serif font-semibold text-paper text-sm">T</span>
+        <span class="w-1 h-1 bg-gold-500 rounded-full ml-0.5"></span>
+      </div>
+      <span class="font-serif text-xl font-semibold tracking-tight">Tier1</span>
+      <span class="ml-3 text-xs uppercase tracking-widest text-ink-700">Admin</span>
+    </a>
+    <a href="index.html" class="text-sm text-ink-800 hover:text-ink-950">← Back to site</a>
+  </div>
+</header>
+
+<!-- LOGIN GATE -->
+<section id="gate" class="max-w-md mx-auto px-5 mt-24">
+  <div class="bg-white border border-ink-900/10 rounded-2xl p-8 shadow-lg">
+    <h1 class="font-serif text-3xl font-semibold">Admin login</h1>
+    <p class="text-sm text-ink-700 mt-1">Enter the password to view submissions.</p>
+    <form id="loginForm" class="mt-6 space-y-4">
+      <input id="pw" type="password" autofocus placeholder="Password"
+             class="w-full bg-paper border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500" />
+      <div id="pwError" class="hidden text-xs text-red-600">Wrong password.</div>
+      <button type="submit" class="w-full bg-ink-950 hover:bg-ink-800 text-paper font-semibold py-3 rounded-xl">Unlock</button>
+    </form>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<main id="dash" class="hidden max-w-7xl mx-auto px-5 lg:px-8 py-10">
+
+  <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+    <div>
+      <h1 class="font-serif text-4xl font-semibold">Submissions</h1>
+      <p class="text-sm text-ink-700 mt-1">Briefs submitted from this device's browser. Newest first.</p>
+    </div>
+    <div class="flex gap-2">
+      <button id="refreshBtn" class="text-sm border border-ink-900/15 hover:bg-bone px-4 py-2 rounded-full">Refresh</button>
+      <button id="exportBtn" class="text-sm bg-ink-950 hover:bg-ink-800 text-paper px-4 py-2 rounded-full">Export CSV</button>
+      <button id="clearBtn" class="text-sm border border-red-300 text-red-600 hover:bg-red-50 px-4 py-2 rounded-full">Clear all</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+    <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+      <div class="text-xs uppercase tracking-widest text-ink-700">Total</div>
+      <div id="statTotal" class="font-serif text-3xl font-semibold mt-1">0</div>
+    </div>
+    <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+      <div class="text-xs uppercase tracking-widest text-ink-700">Last 7 days</div>
+      <div id="stat7" class="font-serif text-3xl font-semibold mt-1">0</div>
+    </div>
+    <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+      <div class="text-xs uppercase tracking-widest text-ink-700">Top specialty</div>
+      <div id="statTop" class="font-serif text-2xl font-semibold mt-1">—</div>
+    </div>
+    <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+      <div class="text-xs uppercase tracking-widest text-ink-700">Latest</div>
+      <div id="statLatest" class="font-serif text-2xl font-semibold mt-1">—</div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="mb-4">
+    <input id="search" type="text" placeholder="Search by name, email, brief…"
+           class="w-full bg-white border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500" />
+  </div>
+
+  <!-- Empty state -->
+  <div id="empty" class="hidden bg-bone border border-dashed border-ink-900/15 rounded-2xl p-12 text-center">
+    <div class="font-serif text-2xl font-semibold">No submissions yet</div>
+    <p class="text-sm text-ink-700 mt-2 max-w-md mx-auto">Once visitors fill in the brief form on the landing page, their submissions will show up here.</p>
+    <a href="index.html#hire" class="inline-block mt-5 text-sm font-semibold bg-ink-950 text-paper px-5 py-2.5 rounded-full">Open form</a>
+  </div>
+
+  <!-- Table -->
+  <div id="tableWrap" class="bg-white border border-ink-900/10 rounded-2xl overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="bg-bone text-ink-700">
+          <tr>
+            <th class="text-left font-semibold px-4 py-3 whitespace-nowrap">When</th>
+            <th class="text-left font-semibold px-4 py-3 whitespace-nowrap">Name</th>
+            <th class="text-left font-semibold px-4 py-3 whitespace-nowrap">Email</th>
+            <th class="text-left font-semibold px-4 py-3 whitespace-nowrap">Specialty</th>
+            <th class="text-left font-semibold px-4 py-3 whitespace-nowrap">Length</th>
+            <th class="text-left font-semibold px-4 py-3">Brief</th>
+          </tr>
+        </thead>
+        <tbody id="rows" class="divide-y divide-ink-900/5"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="mt-8 text-xs text-ink-700 bg-bone rounded-xl p-4">
+    <strong>Heads up:</strong> Submissions are saved to this browser's <code class="bg-paper px-1 rounded">localStorage</code>. They are not synced across devices. To collect submissions from real visitors, wire the form to a backend (Formspree, Google Sheets, Supabase). Tell me when you want that.
+  </div>
+</main>
+
+<script>
+  const PASSWORD = 'Tier1';
+  const STORAGE_KEY = 'tier1_submissions';
+  const AUTH_KEY = 'tier1_admin_auth';
+
+  function unlock() {
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('dash').classList.remove('hidden');
+    render();
+  }
+
+  // session auth
+  if (sessionStorage.getItem(AUTH_KEY) === '1') unlock();
+
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const v = document.getElementById('pw').value;
+    if (v === PASSWORD) {
+      sessionStorage.setItem(AUTH_KEY, '1');
+      unlock();
+    } else {
+      document.getElementById('pwError').classList.remove('hidden');
+    }
+  });
+
+  function getSubs() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+    catch(e) { return []; }
+  }
+
+  function escape(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
+  }
+
+  function fmtDate(iso) {
+    try {
+      const d = new Date(iso);
+      return d.toLocaleString(undefined, { dateStyle:'medium', timeStyle:'short' });
+    } catch(e) { return iso; }
+  }
+
+  function render() {
+    const all = getSubs().slice().reverse();
+    const q = (document.getElementById('search').value || '').toLowerCase();
+    const subs = q
+      ? all.filter(s => JSON.stringify(s).toLowerCase().includes(q))
+      : all;
+
+    // stats
+    document.getElementById('statTotal').textContent = all.length;
+    const weekAgo = Date.now() - 7*24*3600*1000;
+    document.getElementById('stat7').textContent = all.filter(s => new Date(s.submittedAt).getTime() > weekAgo).length;
+    const tally = {};
+    all.forEach(s => { tally[s.specialty || '—'] = (tally[s.specialty || '—']||0) + 1; });
+    const top = Object.entries(tally).sort((a,b)=>b[1]-a[1])[0];
+    document.getElementById('statTop').textContent = top ? top[0] : '—';
+    document.getElementById('statLatest').textContent = all[0] ? fmtDate(all[0].submittedAt) : '—';
+
+    // table
+    const rows = document.getElementById('rows');
+    const empty = document.getElementById('empty');
+    const wrap = document.getElementById('tableWrap');
+    if (all.length === 0) {
+      empty.classList.remove('hidden');
+      wrap.classList.add('hidden');
+      return;
+    }
+    empty.classList.add('hidden');
+    wrap.classList.remove('hidden');
+
+    rows.innerHTML = subs.map(s => `
+      <tr class="hover:bg-bone/50">
+        <td class="px-4 py-3 align-top text-ink-700 whitespace-nowrap">${escape(fmtDate(s.submittedAt))}</td>
+        <td class="px-4 py-3 align-top font-semibold whitespace-nowrap">${escape(s.name)}</td>
+        <td class="px-4 py-3 align-top whitespace-nowrap"><a class="underline" href="mailto:${escape(s.email)}">${escape(s.email)}</a></td>
+        <td class="px-4 py-3 align-top whitespace-nowrap">${escape(s.specialty)}</td>
+        <td class="px-4 py-3 align-top whitespace-nowrap">${escape(s.length)}</td>
+        <td class="px-4 py-3 align-top text-ink-800 max-w-md"><div class="line-clamp-3">${escape(s.brief)}</div></td>
+      </tr>
+    `).join('');
+  }
+
+  document.getElementById('refreshBtn').addEventListener('click', render);
+  document.getElementById('search').addEventListener('input', render);
+
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    if (confirm('Delete all submissions on this device? This cannot be undone.')) {
+      localStorage.removeItem(STORAGE_KEY);
+      render();
+    }
+  });
+
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    const subs = getSubs();
+    if (subs.length === 0) { alert('No submissions to export.'); return; }
+    const cols = ['submittedAt','name','email','specialty','length','brief','userAgent'];
+    const csv = [cols.join(',')]
+      .concat(subs.map(s => cols.map(c => {
+        const v = (s[c] == null ? '' : String(s[c])).replace(/"/g,'""');
+        return `"${v}"`;
+      }).join(',')))
+      .join('\n');
+    const blob = new Blob([csv], {type:'text/csv'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `tier1-submissions-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+</script>
+
+</body>
+</html>
