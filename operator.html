@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tier1 · Operator workspace</title>
+<title>Tier1 · PM workspace</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
@@ -22,13 +22,15 @@
 <style>
   body { font-family:'Inter',sans-serif; background:#F7F5EF; color:#0F1524; }
   .font-serif { font-family:'Fraunces',serif; letter-spacing:-0.02em; }
-  .nav-link { display:flex; align-items:center; gap:.7rem; padding:.6rem .8rem; border-radius:.65rem; font-size:.875rem; color:#bcc0ce; }
+  .nav-link { display:flex; align-items:center; gap:.7rem; padding:.6rem .8rem; border-radius:.65rem; font-size:.875rem; color:#bcc0ce; cursor:pointer; }
   .nav-link:hover { background: rgba(255,255,255,0.05); color:#F7F5EF; }
   .nav-link.active { background:#C9A24B; color:#0A0E1A; font-weight:600; }
   .nav-link.active svg { stroke:#0A0E1A; }
   .pill { display:inline-flex; align-items:center; padding:.2rem .55rem; border-radius:999px; font-size:.7rem; font-weight:500; }
   .view { display:none; }
   .view.active { display:block; }
+  .progress-bar { height:6px; background:#EEEAE0; border-radius:999px; overflow:hidden; }
+  .progress-bar > div { height:100%; background:#4F7A5B; }
 </style>
 </head>
 <body class="antialiased min-h-screen">
@@ -46,494 +48,514 @@
         <span class="font-serif text-xl font-semibold tracking-tight">Tier1</span>
       </a>
       <div class="mt-4 flex items-center gap-2.5 bg-white/5 rounded-lg p-2.5">
-        <div class="w-8 h-8 rounded-md bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center text-ink-950 text-xs font-bold">AK</div>
+        <div class="w-8 h-8 rounded-md bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center text-ink-950 text-xs font-bold">MT</div>
         <div class="min-w-0">
-          <div class="text-sm font-semibold truncate">Aarav K.</div>
-          <div class="text-[10px] text-bone/60 flex items-center gap-1">Operator
-            <span class="w-1 h-1 rounded-full bg-moss-500"></span>
-            <span class="text-moss-500">Available</span>
-          </div>
+          <div class="text-sm font-semibold truncate">Marcus Thornton</div>
+          <div class="text-xs text-bone/60 truncate">Senior PM · Hospitality + Casino</div>
         </div>
       </div>
     </div>
 
     <nav class="flex-1 px-3 py-4 space-y-1">
-      <button class="nav-link active w-full text-left" data-view="dashboard">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
-        Dashboard
-      </button>
-      <button class="nav-link w-full text-left" data-view="briefs">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        Open briefs
-        <span class="ml-auto pill bg-gold-500 text-ink-950">12</span>
-      </button>
-      <button class="nav-link w-full text-left" data-view="applications">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8"/></svg>
-        My applications
-        <span class="ml-auto pill bg-paper text-ink-950">4</span>
-      </button>
-      <button class="nav-link w-full text-left" data-view="work">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM9 12l2 2 4-4"/></svg>
-        Active work
-      </button>
-      <button class="nav-link w-full text-left" data-view="earnings">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <a class="nav-link active" data-view="find">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        Find work
+      </a>
+      <a class="nav-link" data-view="proposals">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>
+        My proposals
+        <span class="ml-auto pill bg-white/10 text-bone">5</span>
+      </a>
+      <a class="nav-link" data-view="contracts">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+        Active contracts
+        <span class="ml-auto pill bg-moss-500/30 text-moss-500">2</span>
+      </a>
+      <a class="nav-link" data-view="messages">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5.1A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>
+        Messages
+        <span class="ml-auto pill bg-gold-500/20 text-gold-500">3</span>
+      </a>
+      <a class="nav-link" data-view="earnings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         Earnings
-      </button>
-      <button class="nav-link w-full text-left" data-view="profile">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a class="nav-link" data-view="profile">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Profile
-      </button>
+      </a>
     </nav>
 
-    <div class="p-3 border-t border-white/5">
-      <a href="app.html" class="nav-link block">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
-        Sign out
+    <div class="px-3 py-4 border-t border-white/5 space-y-1">
+      <a class="nav-link" href="app.html">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+        Switch role
       </a>
     </div>
   </aside>
 
   <!-- MAIN -->
   <main class="flex-1 min-w-0">
-
-    <!-- TOPBAR -->
-    <div class="bg-paper border-b border-ink-900/5 px-6 lg:px-10 h-16 flex items-center justify-between">
-      <h1 id="pageTitle" class="font-serif text-2xl font-semibold">Dashboard</h1>
-      <div class="flex items-center gap-3">
-        <div class="hidden sm:flex items-center gap-2 text-xs">
-          <span class="text-ink-700">Status:</span>
-          <button class="pill bg-moss-500/15 text-moss-600">● Available</button>
-        </div>
-        <button onclick="showView('briefs')" class="text-sm bg-ink-950 hover:bg-ink-800 text-paper px-4 py-2 rounded-full font-medium">Browse briefs</button>
-      </div>
-    </div>
-
-    <!-- DASHBOARD VIEW -->
-    <section data-view="dashboard" class="view active px-6 lg:px-10 py-8">
-      <!-- welcome banner -->
-      <div class="bg-ink-950 text-paper rounded-2xl p-6 mb-6 flex items-center justify-between gap-4">
+    <header class="bg-paper border-b border-ink-900/5 sticky top-0 z-20">
+      <div class="px-6 lg:px-10 h-16 flex items-center justify-between">
         <div>
-          <div class="text-xs uppercase tracking-widest text-bone/60">Welcome back</div>
-          <h2 class="font-serif text-2xl font-semibold mt-1">Aarav — 3 new briefs match your profile this week.</h2>
+          <div class="text-xs uppercase tracking-widest text-ink-700">PM workspace</div>
+          <h1 id="pageTitle" class="font-serif text-xl font-semibold leading-none mt-0.5">Find work</h1>
         </div>
-        <button onclick="showView('briefs')" class="bg-gold-500 hover:bg-gold-600 text-ink-950 font-semibold px-5 py-2.5 rounded-full text-sm whitespace-nowrap">See briefs</button>
+        <div class="flex items-center gap-3">
+          <div class="hidden md:flex items-center gap-2 bg-white border border-ink-900/10 rounded-full px-3 py-1.5">
+            <span class="w-2 h-2 rounded-full bg-moss-500"></span>
+            <span class="text-xs font-medium">Available · 30+ hrs/wk</span>
+          </div>
+          <button class="text-sm bg-ink-950 hover:bg-ink-800 text-paper px-4 py-2 rounded-full">Boost profile</button>
+        </div>
       </div>
+    </header>
 
+    <!-- ============ FIND WORK ============ -->
+    <section class="view active px-6 lg:px-10 py-8" data-view="find">
+
+      <!-- Top stats -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
-          <div class="text-xs uppercase tracking-widest text-ink-700">Earned this month</div>
-          <div class="font-serif text-3xl font-semibold mt-1">$14,280</div>
-          <div class="text-xs text-moss-600 mt-1">+22% vs Apr</div>
+          <div class="text-xs uppercase tracking-widest text-ink-700">Job success</div>
+          <div class="font-serif text-3xl font-semibold mt-1">98%</div>
+          <div class="text-xs text-moss-500 mt-1">Top Rated Plus</div>
         </div>
         <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
-          <div class="text-xs uppercase tracking-widest text-ink-700">Active engagements</div>
-          <div class="font-serif text-3xl font-semibold mt-1">2</div>
-          <div class="text-xs text-ink-700 mt-1">26 hrs scheduled</div>
+          <div class="text-xs uppercase tracking-widest text-ink-700">Earned in '26</div>
+          <div class="font-serif text-3xl font-semibold mt-1">$412k</div>
+          <div class="text-xs text-ink-700 mt-1">across 3 programs</div>
         </div>
         <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
-          <div class="text-xs uppercase tracking-widest text-ink-700">Rating</div>
-          <div class="font-serif text-3xl font-semibold mt-1">4.96 <span class="text-gold-500 text-xl">★</span></div>
-          <div class="text-xs text-ink-700 mt-1">From 23 clients</div>
+          <div class="text-xs uppercase tracking-widest text-ink-700">Open invites</div>
+          <div class="font-serif text-3xl font-semibold mt-1">7</div>
+          <div class="text-xs text-gold-600 mt-1">2 from family offices</div>
         </div>
-        <div class="bg-gold-500 text-ink-950 rounded-2xl p-5">
-          <div class="text-xs uppercase tracking-widest">Match rate</div>
-          <div class="font-serif text-3xl font-semibold mt-1">Top 4%</div>
-          <div class="text-xs mt-1 opacity-80">Tier1 talent ranking</div>
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="text-xs uppercase tracking-widest text-ink-700">Proposal credits</div>
+          <div class="font-serif text-3xl font-semibold mt-1">42</div>
+          <div class="text-xs text-ink-700 mt-1">refresh May 30</div>
         </div>
       </div>
 
-      <div class="grid lg:grid-cols-3 gap-6">
-        <div class="lg:col-span-2 bg-white border border-ink-900/10 rounded-2xl p-6">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="font-serif text-xl font-semibold">Top briefs for you</h3>
-            <button onclick="showView('briefs')" class="text-xs font-semibold text-ink-700 hover:text-ink-950">View all 12 →</button>
+      <!-- Filter bar -->
+      <div class="bg-white border border-ink-900/10 rounded-2xl p-5 mb-6">
+        <div class="flex flex-col lg:flex-row gap-4 items-stretch lg:items-end">
+          <div class="flex-1">
+            <label class="text-xs uppercase tracking-widest text-ink-700">Search</label>
+            <input type="text" placeholder="Try 'casino reno', 'yacht refit', '212 Park Ave'…" class="mt-1 w-full bg-paper border border-ink-900/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-gold-500" />
           </div>
-          <div class="divide-y divide-ink-900/5">
-            <div class="py-4 flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-moss-500/15 flex items-center justify-center shrink-0">
-                <span class="text-moss-600 text-xs font-semibold">98%</span>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="font-semibold">Series C 3-statement model + board deck</div>
-                <div class="text-xs text-ink-700 mt-0.5">Northbeam, Inc. · FP&A · 4–12 weeks · $180-240/hr</div>
-                <p class="text-sm text-ink-800 mt-2">Polished 3-statement w/ driver-based assumptions + 22-slide board deck. Diligence kicks off Jun 2.</p>
-              </div>
-              <button class="text-xs font-semibold bg-ink-950 hover:bg-ink-800 text-paper px-3.5 py-2 rounded-full">Apply</button>
-            </div>
-            <div class="py-4 flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-moss-500/15 flex items-center justify-center shrink-0">
-                <span class="text-moss-600 text-xs font-semibold">94%</span>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="font-semibold">Headcount & opex planning 2026</div>
-                <div class="text-xs text-ink-700 mt-0.5">Crestlane Health · FP&A · 6 weeks · $200-260/hr</div>
-                <p class="text-sm text-ink-800 mt-2">Build a zero-based 2026 plan; need someone fluent in driver models and exec-level board narrative.</p>
-              </div>
-              <button class="text-xs font-semibold bg-ink-950 hover:bg-ink-800 text-paper px-3.5 py-2 rounded-full">Apply</button>
-            </div>
-            <div class="py-4 flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-gold-500/15 flex items-center justify-center shrink-0">
-                <span class="text-gold-600 text-xs font-semibold">88%</span>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="font-semibold">CFO-on-demand for pre-Series B startup</div>
-                <div class="text-xs text-ink-700 mt-0.5">Hatcher Mobility · FP&A · Ongoing fractional · $230/hr</div>
-                <p class="text-sm text-ink-800 mt-2">~12 hrs/week. Own financial model, board prep, and investor updates.</p>
-              </div>
-              <button class="text-xs font-semibold bg-ink-950 hover:bg-ink-800 text-paper px-3.5 py-2 rounded-full">Apply</button>
-            </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-ink-700">Build type</label>
+            <select class="mt-1 bg-paper border border-ink-900/10 rounded-xl px-3 py-2.5 focus:outline-none focus:border-gold-500">
+              <option>All</option><option>Superyacht</option><option>Casino / Gaming</option><option>Hotel / Resort</option><option>Estate / Compound</option><option>Aviation</option><option>Auto / Collection</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-ink-700">Budget</label>
+            <select class="mt-1 bg-paper border border-ink-900/10 rounded-xl px-3 py-2.5 focus:outline-none focus:border-gold-500">
+              <option>Any</option><option>$1M – $10M</option><option>$10M – $50M</option><option>$50M – $100M</option><option>$100M+</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-ink-700">Engagement</label>
+            <select class="mt-1 bg-paper border border-ink-900/10 rounded-xl px-3 py-2.5 focus:outline-none focus:border-gold-500">
+              <option>Any</option><option>Hourly</option><option>Fixed milestone</option><option>Retainer</option>
+            </select>
           </div>
         </div>
+      </div>
 
-        <div class="space-y-4">
-          <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
-            <h3 class="font-serif text-lg font-semibold">Profile strength</h3>
-            <div class="mt-4 flex items-end justify-between mb-2 text-sm">
-              <span class="text-ink-700">88% complete</span>
-              <span class="font-semibold">Strong</span>
-            </div>
-            <div class="h-2 bg-bone rounded-full overflow-hidden"><div class="h-full bg-gold-500 w-[88%]"></div></div>
-            <ul class="mt-5 space-y-2 text-sm">
-              <li class="flex items-center gap-2 text-moss-600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Verified F500 tenure</li>
-              <li class="flex items-center gap-2 text-moss-600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Two writing samples</li>
-              <li class="flex items-center gap-2 text-moss-600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Case study completed</li>
-              <li class="flex items-center gap-2 text-ink-700"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>Add a 60-second intro video</li>
-            </ul>
-            <button onclick="showView('profile')" class="mt-5 w-full bg-ink-950 hover:bg-ink-800 text-paper text-sm font-semibold py-2.5 rounded-full">Improve profile</button>
-          </div>
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-serif text-2xl font-semibold">Programs matched to you</h2>
+        <div class="text-sm text-ink-700">12 results · sorted by fit</div>
+      </div>
 
-          <div class="bg-ink-950 text-paper rounded-2xl p-6">
-            <h3 class="font-serif text-lg font-semibold">Next payout</h3>
-            <div class="font-serif text-3xl font-semibold text-gold-500 mt-2">$5,840</div>
-            <div class="text-xs text-bone/70 mt-1">Releases Friday May 22</div>
-            <div class="mt-4 pt-4 border-t border-white/10 text-xs text-bone/70 flex items-center justify-between">
-              <span>Connected: Stripe ••••42</span>
-              <button class="underline">Change</button>
-            </div>
-          </div>
+      <!-- JOB FEED -->
+      <div id="jobList" class="space-y-4"></div>
+
+    </section>
+
+    <!-- ============ JOB DETAIL ============ -->
+    <section class="view px-6 lg:px-10 py-8" data-view="job">
+      <button class="text-sm text-ink-700 hover:text-ink-950 mb-4" onclick="showView('find')">← Back to results</button>
+      <div id="jobDetail"></div>
+    </section>
+
+    <!-- ============ APPLY ============ -->
+    <section class="view px-6 lg:px-10 py-8" data-view="apply">
+      <button class="text-sm text-ink-700 hover:text-ink-950 mb-4" onclick="goBackToJob()">← Back to program</button>
+      <div class="max-w-3xl">
+        <div class="text-xs uppercase tracking-widest text-ink-700">Submit a proposal</div>
+        <h2 id="applyTitle" class="font-serif text-3xl font-semibold mt-1">—</h2>
+        <p id="applyMeta" class="text-sm text-ink-700 mt-1">—</p>
+
+        <div class="bg-bone border border-ink-900/10 rounded-2xl p-5 mt-6 text-sm">
+          <div class="font-semibold mb-1">Heads up</div>
+          Tier1 charges <strong>5% on first $10k</strong>, <strong>2% thereafter</strong>. Funds clear escrow milestone-by-milestone. NDAs auto-bind on accept.
         </div>
+
+        <form id="applyForm" class="mt-8 space-y-6 bg-white border border-ink-900/10 rounded-2xl p-6">
+          <div>
+            <label class="text-sm font-semibold">Engagement</label>
+            <div class="mt-2 grid grid-cols-3 gap-2">
+              <label class="border border-ink-900/10 rounded-xl px-3 py-2.5 text-sm cursor-pointer has-[:checked]:border-gold-500 has-[:checked]:bg-gold-500/5">
+                <input type="radio" name="eng" class="mr-2" checked>Hourly
+              </label>
+              <label class="border border-ink-900/10 rounded-xl px-3 py-2.5 text-sm cursor-pointer has-[:checked]:border-gold-500 has-[:checked]:bg-gold-500/5">
+                <input type="radio" name="eng" class="mr-2">Milestone
+              </label>
+              <label class="border border-ink-900/10 rounded-xl px-3 py-2.5 text-sm cursor-pointer has-[:checked]:border-gold-500 has-[:checked]:bg-gold-500/5">
+                <input type="radio" name="eng" class="mr-2">Retainer
+              </label>
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm font-semibold">Your rate</label>
+              <div class="mt-1 flex items-center bg-paper border border-ink-900/10 rounded-xl">
+                <span class="px-3 text-ink-700">$</span>
+                <input type="number" value="420" class="w-full bg-transparent py-2.5 focus:outline-none" />
+                <span class="px-3 text-ink-700 text-sm">/ hr</span>
+              </div>
+              <div class="text-xs text-ink-700 mt-1">After fees you'll receive ~$411.60/hr</div>
+            </div>
+            <div>
+              <label class="text-sm font-semibold">Earliest start</label>
+              <input type="date" class="mt-1 w-full bg-paper border border-ink-900/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-gold-500" />
+            </div>
+          </div>
+
+          <div>
+            <label class="text-sm font-semibold">Cover letter</label>
+            <textarea rows="8" placeholder="What relevant builds have you delivered? Reference scale, budget, and discretion handling. Family offices and business managers read these closely." class="mt-1 w-full bg-paper border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500"></textarea>
+            <div class="text-xs text-ink-700 mt-1">Mention if you've worked under NDA for athlete or entertainer clients.</div>
+          </div>
+
+          <div>
+            <label class="text-sm font-semibold">Attach references</label>
+            <div class="mt-1 border-2 border-dashed border-ink-900/15 rounded-xl px-4 py-6 text-center text-sm text-ink-700">
+              Drop redacted case studies, photos, or completion certificates here (PDF, JPG · max 25MB)
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-2">
+            <div class="text-xs text-ink-700">Uses <strong>4 proposal credits</strong> · 42 available</div>
+            <div class="flex gap-2">
+              <button type="button" class="text-sm border border-ink-900/15 hover:bg-bone px-5 py-2.5 rounded-full">Save draft</button>
+              <button type="submit" class="text-sm bg-ink-950 hover:bg-ink-800 text-paper font-semibold px-6 py-2.5 rounded-full">Submit proposal</button>
+            </div>
+          </div>
+        </form>
       </div>
     </section>
 
-    <!-- BRIEFS VIEW -->
-    <section data-view="briefs" class="view px-6 lg:px-10 py-8">
-      <div class="flex flex-col lg:flex-row lg:items-center gap-3 mb-6">
-        <input class="flex-1 bg-white border border-ink-900/10 rounded-xl px-4 py-2.5 text-sm" placeholder="Search briefs…" />
-        <div class="flex gap-2 flex-wrap">
-          <button class="pill bg-ink-950 text-paper">All</button>
-          <button class="pill bg-white border border-ink-900/10">FP&A</button>
-          <button class="pill bg-white border border-ink-900/10">Treasury</button>
-          <button class="pill bg-white border border-ink-900/10">Controllership</button>
-          <button class="pill bg-white border border-ink-900/10">M&A</button>
-          <button class="pill bg-white border border-ink-900/10">Remote</button>
-        </div>
+    <!-- ============ PROPOSALS ============ -->
+    <section class="view px-6 lg:px-10 py-8" data-view="proposals">
+      <div class="flex items-center gap-2 mb-6 border-b border-ink-900/10">
+        <button class="text-sm font-semibold border-b-2 border-ink-950 pb-3 px-1">Active (5)</button>
+        <button class="text-sm text-ink-700 hover:text-ink-950 pb-3 px-3">Shortlisted (2)</button>
+        <button class="text-sm text-ink-700 hover:text-ink-950 pb-3 px-3">Archived</button>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-5">
-        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
-          <div class="flex items-center justify-between">
-            <span class="pill bg-moss-500/15 text-moss-600">98% match</span>
-            <span class="text-xs text-ink-700">Posted 2d ago</span>
-          </div>
-          <h3 class="font-semibold mt-3">Series C 3-statement model + board deck</h3>
-          <div class="text-xs text-ink-700 mt-1">Northbeam, Inc. · FP&A · 4–12 weeks</div>
-          <p class="text-sm text-ink-800 mt-3">Polished 3-statement w/ driver-based assumptions + 22-slide board deck. Diligence kicks off Jun 2.</p>
-          <div class="mt-4 pt-4 border-t border-ink-900/5 flex items-center justify-between">
-            <div class="font-serif text-lg font-semibold">$180–240<span class="text-xs text-ink-700">/hr</span></div>
-            <div class="flex gap-2">
-              <button class="text-xs border border-ink-900/15 hover:bg-bone px-3 py-1.5 rounded-full">Save</button>
-              <button class="text-xs bg-ink-950 hover:bg-ink-800 text-paper px-3 py-1.5 rounded-full font-semibold">Apply</button>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
-          <div class="flex items-center justify-between">
-            <span class="pill bg-moss-500/15 text-moss-600">94% match</span>
-            <span class="text-xs text-ink-700">Posted 3d ago</span>
-          </div>
-          <h3 class="font-semibold mt-3">Headcount & opex planning 2026</h3>
-          <div class="text-xs text-ink-700 mt-1">Crestlane Health · FP&A · 6 weeks</div>
-          <p class="text-sm text-ink-800 mt-3">Zero-based 2026 plan; need someone fluent in driver models and exec-level board narrative.</p>
-          <div class="mt-4 pt-4 border-t border-ink-900/5 flex items-center justify-between">
-            <div class="font-serif text-lg font-semibold">$200–260<span class="text-xs text-ink-700">/hr</span></div>
-            <div class="flex gap-2">
-              <button class="text-xs border border-ink-900/15 hover:bg-bone px-3 py-1.5 rounded-full">Save</button>
-              <button class="text-xs bg-ink-950 hover:bg-ink-800 text-paper px-3 py-1.5 rounded-full font-semibold">Apply</button>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
-          <div class="flex items-center justify-between">
-            <span class="pill bg-gold-500/20 text-gold-600">88% match</span>
-            <span class="text-xs text-ink-700">Posted 4d ago</span>
-          </div>
-          <h3 class="font-semibold mt-3">CFO-on-demand for pre-Series B startup</h3>
-          <div class="text-xs text-ink-700 mt-1">Hatcher Mobility · FP&A · Ongoing</div>
-          <p class="text-sm text-ink-800 mt-3">~12 hrs/week. Own financial model, board prep, and investor updates.</p>
-          <div class="mt-4 pt-4 border-t border-ink-900/5 flex items-center justify-between">
-            <div class="font-serif text-lg font-semibold">$230<span class="text-xs text-ink-700">/hr</span></div>
-            <div class="flex gap-2">
-              <button class="text-xs border border-ink-900/15 hover:bg-bone px-3 py-1.5 rounded-full">Save</button>
-              <button class="text-xs bg-ink-950 hover:bg-ink-800 text-paper px-3 py-1.5 rounded-full font-semibold">Apply</button>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
-          <div class="flex items-center justify-between">
-            <span class="pill bg-gold-500/20 text-gold-600">82% match</span>
-            <span class="text-xs text-ink-700">Posted yesterday</span>
-          </div>
-          <h3 class="font-semibold mt-3">M&A integration plan (carve-out)</h3>
-          <div class="text-xs text-ink-700 mt-1">Vector Industries · M&A · 8 weeks</div>
-          <p class="text-sm text-ink-800 mt-3">Day-1 / day-100 plan for a $180M carve-out. Synergy bridge + TSA scoping.</p>
-          <div class="mt-4 pt-4 border-t border-ink-900/5 flex items-center justify-between">
-            <div class="font-serif text-lg font-semibold">$260–320<span class="text-xs text-ink-700">/hr</span></div>
-            <div class="flex gap-2">
-              <button class="text-xs border border-ink-900/15 hover:bg-bone px-3 py-1.5 rounded-full">Save</button>
-              <button class="text-xs bg-ink-950 hover:bg-ink-800 text-paper px-3 py-1.5 rounded-full font-semibold">Apply</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- APPLICATIONS VIEW -->
-    <section data-view="applications" class="view px-6 lg:px-10 py-8">
       <div class="bg-white border border-ink-900/10 rounded-2xl overflow-hidden">
         <table class="w-full text-sm">
-          <thead class="bg-bone text-ink-700 text-xs uppercase tracking-widest">
-            <tr><th class="text-left font-semibold px-6 py-3">Brief</th><th class="text-left font-semibold px-6 py-3">Client</th><th class="text-left font-semibold px-6 py-3">Applied</th><th class="text-right font-semibold px-6 py-3">Status</th><th class="text-right font-semibold px-6 py-3"></th></tr>
+          <thead class="bg-bone text-ink-700">
+            <tr>
+              <th class="text-left font-semibold px-4 py-3">Program</th>
+              <th class="text-left font-semibold px-4 py-3">Client</th>
+              <th class="text-left font-semibold px-4 py-3">Bid</th>
+              <th class="text-left font-semibold px-4 py-3">Sent</th>
+              <th class="text-left font-semibold px-4 py-3">Status</th>
+              <th class="px-4 py-3"></th>
+            </tr>
           </thead>
           <tbody class="divide-y divide-ink-900/5">
             <tr>
-              <td class="px-6 py-4"><div class="font-semibold">Series C 3-statement model</div><div class="text-xs text-ink-700">FP&A · $180-240/hr</div></td>
-              <td class="px-6 py-4">Northbeam, Inc.</td>
-              <td class="px-6 py-4 text-ink-700">2d ago</td>
-              <td class="px-6 py-4 text-right"><span class="pill bg-gold-500/20 text-gold-600">Shortlisted</span></td>
-              <td class="px-6 py-4 text-right"><button class="text-xs font-semibold underline">Open</button></td>
+              <td class="px-4 py-3 font-semibold">Project Heron · Calabasas compound</td>
+              <td class="px-4 py-3 text-ink-700">Keystone Family Office</td>
+              <td class="px-4 py-3">$420/hr</td>
+              <td class="px-4 py-3 text-ink-700">May 12</td>
+              <td class="px-4 py-3"><span class="pill bg-gold-500/15 text-gold-600">Shortlisted</span></td>
+              <td class="px-4 py-3"><button class="text-xs underline">View</button></td>
             </tr>
             <tr>
-              <td class="px-6 py-4"><div class="font-semibold">Headcount & opex planning 2026</div><div class="text-xs text-ink-700">FP&A · $200-260/hr</div></td>
-              <td class="px-6 py-4">Crestlane Health</td>
-              <td class="px-6 py-4 text-ink-700">3d ago</td>
-              <td class="px-6 py-4 text-right"><span class="pill bg-ink-900/10 text-ink-800">In review</span></td>
-              <td class="px-6 py-4 text-right"><button class="text-xs font-semibold underline">Open</button></td>
+              <td class="px-4 py-3 font-semibold">Project Marquee · Vegas casino reno</td>
+              <td class="px-4 py-3 text-ink-700">Sterling & Co. Business Mgmt</td>
+              <td class="px-4 py-3">$8.4M fixed</td>
+              <td class="px-4 py-3 text-ink-700">May 9</td>
+              <td class="px-4 py-3"><span class="pill bg-moss-500/15 text-moss-600">Interview booked</span></td>
+              <td class="px-4 py-3"><button class="text-xs underline">View</button></td>
             </tr>
             <tr>
-              <td class="px-6 py-4"><div class="font-semibold">CFO-on-demand</div><div class="text-xs text-ink-700">FP&A · $230/hr</div></td>
-              <td class="px-6 py-4">Hatcher Mobility</td>
-              <td class="px-6 py-4 text-ink-700">4d ago</td>
-              <td class="px-6 py-4 text-right"><span class="pill bg-moss-500/15 text-moss-600">Intro call</span></td>
-              <td class="px-6 py-4 text-right"><button class="text-xs font-semibold underline">Open</button></td>
+              <td class="px-4 py-3 font-semibold">Project Nautilus · 168' yacht refit</td>
+              <td class="px-4 py-3 text-ink-700">Pelican Trust</td>
+              <td class="px-4 py-3">$395/hr</td>
+              <td class="px-4 py-3 text-ink-700">May 6</td>
+              <td class="px-4 py-3"><span class="pill bg-ink-900/10 text-ink-700">Submitted</span></td>
+              <td class="px-4 py-3"><button class="text-xs underline">View</button></td>
             </tr>
             <tr>
-              <td class="px-6 py-4"><div class="font-semibold">Quarterly close clean-up</div><div class="text-xs text-ink-700">Controllership · $200/hr</div></td>
-              <td class="px-6 py-4">Banyan Foods</td>
-              <td class="px-6 py-4 text-ink-700">1w ago</td>
-              <td class="px-6 py-4 text-right"><span class="pill bg-ink-900/10 text-ink-700">Not selected</span></td>
-              <td class="px-6 py-4 text-right"><button class="text-xs font-semibold underline">Feedback</button></td>
+              <td class="px-4 py-3 font-semibold">Project Aria · Aman fit-out, Turks</td>
+              <td class="px-4 py-3 text-ink-700">Halcyon Group</td>
+              <td class="px-4 py-3">$450/hr</td>
+              <td class="px-4 py-3 text-ink-700">May 3</td>
+              <td class="px-4 py-3"><span class="pill bg-ink-900/10 text-ink-700">Submitted</span></td>
+              <td class="px-4 py-3"><button class="text-xs underline">View</button></td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-semibold">Project Carrera · Buckhead car gallery</td>
+              <td class="px-4 py-3 text-ink-700">Keystone Family Office</td>
+              <td class="px-4 py-3">$2.1M fixed</td>
+              <td class="px-4 py-3 text-ink-700">Apr 28</td>
+              <td class="px-4 py-3"><span class="pill bg-red-100 text-red-700">Passed</span></td>
+              <td class="px-4 py-3"><button class="text-xs underline">View</button></td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- ACTIVE WORK VIEW -->
-    <section data-view="work" class="view px-6 lg:px-10 py-8 space-y-5">
-      <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="flex items-center gap-2">
-              <h3 class="font-semibold">Q2 forecast refresh</h3>
-              <span class="pill bg-moss-500/15 text-moss-600">Active</span>
-            </div>
-            <div class="text-xs text-ink-700 mt-1">Northbeam, Inc. · $245/hr · started May 6</div>
-          </div>
-          <div class="text-right">
-            <div class="font-serif text-2xl font-semibold">$8,640</div>
-            <div class="text-[10px] uppercase tracking-widest text-ink-700">earned so far</div>
-          </div>
-        </div>
-        <div class="mt-5">
-          <div class="flex items-center justify-between text-xs text-ink-700 mb-1">
-            <span>2 of 4 milestones</span>
-            <span>50%</span>
-          </div>
-          <div class="h-2 bg-bone rounded-full overflow-hidden"><div class="h-full bg-gold-500 w-1/2"></div></div>
-        </div>
-        <div class="mt-5 grid sm:grid-cols-4 gap-2 text-xs">
-          <div class="bg-moss-500/10 text-moss-600 rounded-lg p-2.5"><div class="font-semibold">✓ Driver tree v1</div><div class="opacity-70 mt-0.5">$2,200</div></div>
-          <div class="bg-moss-500/10 text-moss-600 rounded-lg p-2.5"><div class="font-semibold">✓ Headcount map</div><div class="opacity-70 mt-0.5">$2,800</div></div>
-          <div class="bg-gold-500/15 text-gold-600 rounded-lg p-2.5"><div class="font-semibold">⏳ Forecast v2</div><div class="opacity-70 mt-0.5">Due May 21</div></div>
-          <div class="bg-bone text-ink-700 rounded-lg p-2.5"><div class="font-semibold">○ Board version</div><div class="opacity-70 mt-0.5">Due Jun 4</div></div>
-        </div>
-        <div class="mt-5 pt-5 border-t border-ink-900/5 flex items-center gap-2">
-          <button class="text-xs font-semibold bg-ink-950 hover:bg-ink-800 text-paper px-3.5 py-2 rounded-full">Submit milestone</button>
-          <button class="text-xs font-semibold border border-ink-900/15 hover:bg-bone px-3.5 py-2 rounded-full">Log hours</button>
-          <button class="text-xs font-semibold text-ink-700 hover:text-ink-950 ml-auto">Message client</button>
-        </div>
-      </div>
+    <!-- ============ CONTRACTS ============ -->
+    <section class="view px-6 lg:px-10 py-8" data-view="contracts">
+      <div class="space-y-5">
 
-      <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="flex items-center gap-2">
-              <h3 class="font-semibold">Monthly board pack</h3>
-              <span class="pill bg-ink-900/10 text-ink-800">Recurring</span>
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+          <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-serif text-xl font-semibold">Project Bellagio · Strip lounge buildout</h3>
+                <span class="pill bg-moss-500/15 text-moss-600">Active</span>
+              </div>
+              <div class="text-sm text-ink-700 mt-1">Sterling & Co. Business Management · Las Vegas · Fixed-milestone</div>
             </div>
-            <div class="text-xs text-ink-700 mt-1">Hatcher Mobility · $230/hr · ~12 hrs/week</div>
+            <div class="text-right">
+              <div class="text-xs uppercase tracking-widest text-ink-700">Contract value</div>
+              <div class="font-serif text-2xl font-semibold">$6.2M</div>
+              <div class="text-xs text-moss-600">$2.8M released · $3.4M in escrow</div>
+            </div>
           </div>
-          <div class="text-right">
-            <div class="font-serif text-2xl font-semibold">$5,640</div>
-            <div class="text-[10px] uppercase tracking-widest text-ink-700">this month</div>
+          <div class="mt-5">
+            <div class="flex justify-between text-xs text-ink-700 mb-1.5"><span>Demo complete</span><span>Punch list</span></div>
+            <div class="progress-bar"><div style="width:58%"></div></div>
+            <div class="text-xs text-ink-700 mt-1.5">Milestone 4 of 7 · Rough-in inspection scheduled May 22</div>
+          </div>
+          <div class="mt-5 flex gap-2">
+            <button class="text-sm bg-ink-950 hover:bg-ink-800 text-paper px-4 py-2 rounded-full">Submit milestone</button>
+            <button class="text-sm border border-ink-900/15 hover:bg-bone px-4 py-2 rounded-full">Message client</button>
+            <button class="text-sm border border-ink-900/15 hover:bg-bone px-4 py-2 rounded-full">Log hours</button>
           </div>
         </div>
-        <div class="mt-5 pt-5 border-t border-ink-900/5 flex items-center gap-2">
-          <button class="text-xs font-semibold border border-ink-900/15 hover:bg-bone px-3.5 py-2 rounded-full">Log hours</button>
-          <button class="text-xs font-semibold text-ink-700 hover:text-ink-950 ml-auto">Pause week</button>
+
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+          <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-serif text-xl font-semibold">Project Sable · Aspen lodge</h3>
+                <span class="pill bg-moss-500/15 text-moss-600">Active</span>
+              </div>
+              <div class="text-sm text-ink-700 mt-1">Halcyon Group · Aspen, CO · Hourly @ $420</div>
+            </div>
+            <div class="text-right">
+              <div class="text-xs uppercase tracking-widest text-ink-700">Logged this cycle</div>
+              <div class="font-serif text-2xl font-semibold">38 hrs</div>
+              <div class="text-xs text-ink-700">$15,960 · auto-releases Friday</div>
+            </div>
+          </div>
+          <div class="mt-5">
+            <div class="flex justify-between text-xs text-ink-700 mb-1.5"><span>Schematics</span><span>CO + handoff</span></div>
+            <div class="progress-bar"><div style="width:22%"></div></div>
+            <div class="text-xs text-ink-700 mt-1.5">Phase 1 of 5 · Architect coordination week</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ MESSAGES ============ -->
+    <section class="view px-6 lg:px-10 py-8" data-view="messages">
+      <div class="bg-white border border-ink-900/10 rounded-2xl overflow-hidden grid lg:grid-cols-[280px_1fr] min-h-[560px]">
+        <aside class="border-r border-ink-900/10">
+          <div class="p-4 border-b border-ink-900/10">
+            <input type="text" placeholder="Search threads" class="w-full bg-paper border border-ink-900/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-gold-500"/>
+          </div>
+          <div class="divide-y divide-ink-900/5">
+            <button class="w-full text-left px-4 py-3 bg-bone">
+              <div class="flex items-center justify-between"><div class="font-semibold text-sm">Sasha K. · Keystone</div><div class="text-xs text-ink-700">2m</div></div>
+              <div class="text-xs text-ink-700 mt-0.5 truncate">Can you walk us through the Strip lounge punch list…</div>
+            </button>
+            <button class="w-full text-left px-4 py-3 hover:bg-bone/50">
+              <div class="flex items-center justify-between"><div class="font-semibold text-sm">Halcyon Group</div><div class="text-xs text-ink-700">1h</div></div>
+              <div class="text-xs text-ink-700 mt-0.5 truncate">Architect's revised set is in the room.</div>
+            </button>
+            <button class="w-full text-left px-4 py-3 hover:bg-bone/50">
+              <div class="flex items-center justify-between"><div class="font-semibold text-sm">Sterling & Co.</div><div class="text-xs text-ink-700">Yesterday</div></div>
+              <div class="text-xs text-ink-700 mt-0.5 truncate">Inspector confirmed for May 22.</div>
+            </button>
+          </div>
+        </aside>
+        <div class="flex flex-col">
+          <div class="p-4 border-b border-ink-900/10 flex items-center justify-between">
+            <div>
+              <div class="font-semibold text-sm">Sasha K. · Keystone Family Office</div>
+              <div class="text-xs text-ink-700">Project Heron · Calabasas</div>
+            </div>
+            <button class="text-xs border border-ink-900/15 hover:bg-bone px-3 py-1.5 rounded-full">View program</button>
+          </div>
+          <div class="flex-1 p-5 space-y-4 bg-paper/50">
+            <div class="max-w-md bg-white border border-ink-900/10 rounded-2xl rounded-tl-sm px-4 py-3 text-sm">
+              Marcus — we read your proposal. The principal liked the MGM lounge precedent. Can you talk us through how you'd handle paparazzi mitigation during site visits?
+              <div class="text-xs text-ink-700 mt-1">Sasha · 9:14am</div>
+            </div>
+            <div class="max-w-md ml-auto bg-ink-950 text-paper rounded-2xl rounded-tr-sm px-4 py-3 text-sm">
+              Standard playbook: trade-only access gate, no plate logs, drivers screened through K2. I'll send a one-pager.
+              <div class="text-xs text-bone/60 mt-1">You · 9:21am</div>
+            </div>
+            <div class="max-w-md bg-white border border-ink-900/10 rounded-2xl rounded-tl-sm px-4 py-3 text-sm">
+              Perfect. Can we put 30 min on the calendar Thursday?
+              <div class="text-xs text-ink-700 mt-1">Sasha · just now</div>
+            </div>
+          </div>
+          <div class="p-4 border-t border-ink-900/10 flex gap-2">
+            <input type="text" placeholder="Reply…" class="flex-1 bg-paper border border-ink-900/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-gold-500"/>
+            <button class="bg-ink-950 hover:bg-ink-800 text-paper px-5 rounded-xl text-sm font-semibold">Send</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- EARNINGS VIEW -->
-    <section data-view="earnings" class="view px-6 lg:px-10 py-8">
-      <div class="grid lg:grid-cols-4 gap-5 mb-6">
+    <!-- ============ EARNINGS ============ -->
+    <section class="view px-6 lg:px-10 py-8" data-view="earnings">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
-          <div class="text-xs uppercase tracking-widest text-ink-700">This month</div>
-          <div class="font-serif text-3xl font-semibold mt-1">$14,280</div>
-        </div>
-        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
-          <div class="text-xs uppercase tracking-widest text-ink-700">YTD</div>
-          <div class="font-serif text-3xl font-semibold mt-1">$68,940</div>
+          <div class="text-xs uppercase tracking-widest text-ink-700">Available</div>
+          <div class="font-serif text-3xl font-semibold mt-1">$24,180</div>
+          <button class="mt-2 text-xs text-gold-600 font-semibold">Withdraw →</button>
         </div>
         <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
           <div class="text-xs uppercase tracking-widest text-ink-700">In escrow</div>
-          <div class="font-serif text-3xl font-semibold mt-1">$5,840</div>
+          <div class="font-serif text-3xl font-semibold mt-1">$3.4M</div>
+          <div class="text-xs text-ink-700 mt-1">Across 2 programs</div>
         </div>
-        <div class="bg-gold-500 text-ink-950 rounded-2xl p-5">
-          <div class="text-xs uppercase tracking-widest">Next payout</div>
-          <div class="font-serif text-3xl font-semibold mt-1">Fri May 22</div>
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="text-xs uppercase tracking-widest text-ink-700">YTD net</div>
+          <div class="font-serif text-3xl font-semibold mt-1">$412k</div>
+          <div class="text-xs text-moss-600 mt-1">+ 38% vs. '25</div>
         </div>
-      </div>
-
-      <!-- chart -->
-      <div class="bg-white border border-ink-900/10 rounded-2xl p-6 mb-6">
-        <h3 class="font-semibold mb-4">Monthly earnings</h3>
-        <div class="flex items-end gap-3 h-40">
-          <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full bg-bone rounded-t" style="height:38%"></div><div class="text-[11px] text-ink-700">Jan</div></div>
-          <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full bg-bone rounded-t" style="height:52%"></div><div class="text-[11px] text-ink-700">Feb</div></div>
-          <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full bg-bone rounded-t" style="height:46%"></div><div class="text-[11px] text-ink-700">Mar</div></div>
-          <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full bg-ink-700 rounded-t" style="height:68%"></div><div class="text-[11px] text-ink-700">Apr</div></div>
-          <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full bg-gold-500 rounded-t" style="height:88%"></div><div class="text-[11px] text-ink-700 font-semibold">May</div></div>
+        <div class="bg-white border border-ink-900/10 rounded-2xl p-5">
+          <div class="text-xs uppercase tracking-widest text-ink-700">Lifetime</div>
+          <div class="font-serif text-3xl font-semibold mt-1">$2.94M</div>
+          <div class="text-xs text-ink-700 mt-1">Since '22</div>
         </div>
       </div>
 
+      <h3 class="font-serif text-2xl font-semibold mb-3">Recent releases</h3>
       <div class="bg-white border border-ink-900/10 rounded-2xl overflow-hidden">
-        <div class="px-6 py-4 border-b border-ink-900/5 flex items-center justify-between">
-          <h3 class="font-semibold">Payouts</h3>
-          <button class="text-xs font-semibold border border-ink-900/15 hover:bg-bone px-3 py-1.5 rounded-full">Download 1099</button>
-        </div>
         <table class="w-full text-sm">
-          <thead class="bg-bone text-ink-700 text-xs uppercase tracking-widest">
-            <tr><th class="text-left font-semibold px-6 py-3">Date</th><th class="text-left font-semibold px-6 py-3">Client</th><th class="text-left font-semibold px-6 py-3">Milestone</th><th class="text-right font-semibold px-6 py-3">Amount</th><th class="text-right font-semibold px-6 py-3">Status</th></tr>
+          <thead class="bg-bone text-ink-700">
+            <tr>
+              <th class="text-left font-semibold px-4 py-3">Date</th>
+              <th class="text-left font-semibold px-4 py-3">Program</th>
+              <th class="text-left font-semibold px-4 py-3">Milestone</th>
+              <th class="text-right font-semibold px-4 py-3">Gross</th>
+              <th class="text-right font-semibold px-4 py-3">Tier1 fee</th>
+              <th class="text-right font-semibold px-4 py-3">Net</th>
+            </tr>
           </thead>
           <tbody class="divide-y divide-ink-900/5">
-            <tr><td class="px-6 py-3">May 22</td><td class="px-6 py-3">Northbeam, Inc.</td><td class="px-6 py-3">Headcount map</td><td class="px-6 py-3 text-right font-semibold">$2,800</td><td class="px-6 py-3 text-right"><span class="pill bg-gold-500/20 text-gold-600">Scheduled</span></td></tr>
-            <tr><td class="px-6 py-3">May 15</td><td class="px-6 py-3">Hatcher Mobility</td><td class="px-6 py-3">Wk 2 retainer</td><td class="px-6 py-3 text-right font-semibold">$2,760</td><td class="px-6 py-3 text-right"><span class="pill bg-moss-500/15 text-moss-600">Paid</span></td></tr>
-            <tr><td class="px-6 py-3">May 8</td><td class="px-6 py-3">Northbeam, Inc.</td><td class="px-6 py-3">Driver tree v1</td><td class="px-6 py-3 text-right font-semibold">$2,200</td><td class="px-6 py-3 text-right"><span class="pill bg-moss-500/15 text-moss-600">Paid</span></td></tr>
-            <tr><td class="px-6 py-3">May 1</td><td class="px-6 py-3">Hatcher Mobility</td><td class="px-6 py-3">Wk 1 retainer</td><td class="px-6 py-3 text-right font-semibold">$2,880</td><td class="px-6 py-3 text-right"><span class="pill bg-moss-500/15 text-moss-600">Paid</span></td></tr>
+            <tr><td class="px-4 py-3 text-ink-700">May 10</td><td class="px-4 py-3 font-semibold">Project Bellagio</td><td class="px-4 py-3 text-ink-700">Demo complete</td><td class="px-4 py-3 text-right">$840,000</td><td class="px-4 py-3 text-right text-ink-700">$16,800</td><td class="px-4 py-3 text-right font-semibold">$823,200</td></tr>
+            <tr><td class="px-4 py-3 text-ink-700">May 3</td><td class="px-4 py-3 font-semibold">Project Sable</td><td class="px-4 py-3 text-ink-700">Hours · 41</td><td class="px-4 py-3 text-right">$17,220</td><td class="px-4 py-3 text-right text-ink-700">$344</td><td class="px-4 py-3 text-right font-semibold">$16,876</td></tr>
+            <tr><td class="px-4 py-3 text-ink-700">Apr 26</td><td class="px-4 py-3 font-semibold">Project Bellagio</td><td class="px-4 py-3 text-ink-700">Permits issued</td><td class="px-4 py-3 text-right">$420,000</td><td class="px-4 py-3 text-right text-ink-700">$8,400</td><td class="px-4 py-3 text-right font-semibold">$411,600</td></tr>
+            <tr><td class="px-4 py-3 text-ink-700">Apr 19</td><td class="px-4 py-3 font-semibold">Project Sable</td><td class="px-4 py-3 text-ink-700">Hours · 38</td><td class="px-4 py-3 text-right">$15,960</td><td class="px-4 py-3 text-right text-ink-700">$319</td><td class="px-4 py-3 text-right font-semibold">$15,641</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- PROFILE VIEW -->
-    <section data-view="profile" class="view px-6 lg:px-10 py-8">
-      <div class="grid lg:grid-cols-3 gap-6">
-        <div class="lg:col-span-1">
-          <div class="bg-white border border-ink-900/10 rounded-2xl p-6 text-center">
-            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center text-ink-950 text-2xl font-bold mx-auto">AK</div>
-            <h2 class="font-serif text-2xl font-semibold mt-4">Aarav K.</h2>
-            <div class="text-sm text-ink-700">Senior FP&A Lead</div>
-            <div class="text-xs text-ink-700 mt-1">11 yrs · ex-Amazon, ex-Salesforce</div>
-            <div class="mt-4 flex items-center justify-center gap-3 text-xs text-ink-800">
-              <span class="font-semibold">4.96 ★</span><span>·</span>
-              <span>128 jobs</span><span>·</span>
-              <span class="text-moss-600 font-semibold">Top 4%</span>
+    <!-- ============ PROFILE ============ -->
+    <section class="view px-6 lg:px-10 py-8" data-view="profile">
+      <div class="grid lg:grid-cols-[1fr_320px] gap-6">
+        <div class="space-y-6">
+          <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+            <div class="flex items-start gap-5">
+              <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center text-ink-950 text-2xl font-bold">MT</div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <h2 class="font-serif text-2xl font-semibold">Marcus Thornton</h2>
+                  <span class="pill bg-gold-500/15 text-gold-600">Top Rated Plus</span>
+                  <span class="pill bg-moss-500/15 text-moss-600">Verified</span>
+                </div>
+                <div class="text-sm text-ink-700 mt-0.5">Senior PM · Hospitality, Casino, Lounge buildouts</div>
+                <div class="text-sm text-ink-700">Las Vegas, NV · 30+ hrs/wk available</div>
+                <div class="mt-3 flex flex-wrap gap-1.5 text-xs">
+                  <span class="pill bg-bone">ex-Suffolk Construction</span>
+                  <span class="pill bg-bone">ex-MGM Resorts dev team</span>
+                  <span class="pill bg-bone">LEED AP</span>
+                  <span class="pill bg-bone">NV gaming-floor licensed</span>
+                </div>
+              </div>
+              <button class="text-sm border border-ink-900/15 hover:bg-bone px-4 py-2 rounded-full">Edit</button>
             </div>
-            <button class="mt-5 w-full bg-ink-950 hover:bg-ink-800 text-paper text-sm font-semibold py-2.5 rounded-full">Preview public profile</button>
           </div>
-          <div class="bg-white border border-ink-900/10 rounded-2xl p-6 mt-5">
-            <h3 class="font-semibold">Your rate</h3>
-            <div class="font-serif text-3xl font-semibold mt-2">$245<span class="text-base text-ink-700">/hr</span></div>
-            <div class="text-xs text-ink-700 mt-1">Benchmark: $210 – $270 for FP&A · 11 yrs</div>
-            <button class="mt-4 w-full text-sm border border-ink-900/15 hover:bg-bone py-2 rounded-full font-semibold">Adjust rate</button>
+
+          <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+            <h3 class="font-semibold mb-3">Overview</h3>
+            <p class="text-sm text-ink-800 leading-relaxed">
+              14 years delivering high-discretion hospitality and gaming projects, including the Aria Sky Suites refresh (2019) and three private celebrity lounges on the Las Vegas Strip. Most recent: $48M hilltop estate in Calabasas for an NBA all-star. Comfortable running concurrent programs across coasts; carry standing relationships with Suffolk, Hill Intl, and Lürssen subcontractors. NDA-trained team of 4.
+            </p>
+          </div>
+
+          <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+            <h3 class="font-semibold mb-4">Selected programs</h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="font-semibold">Calabasas hilltop compound · $48M</div>
+                  <div class="text-xs text-ink-700">2024 — present</div>
+                </div>
+                <p class="text-sm text-ink-700 mt-1">Owner's rep on a 22,000 sqft estate with FIBA-spec court, screening room, and detached guest lodge. Family office client; principal is an active NBA player.</p>
+              </div>
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="font-semibold">Strip lounge buildout · $6.2M</div>
+                  <div class="text-xs text-ink-700">2024</div>
+                </div>
+                <p class="text-sm text-ink-700 mt-1">Fixed-milestone GC management for a celebrity-branded lounge inside an MGM property. Delivered 9 weeks ahead of opening night.</p>
+              </div>
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="font-semibold">Aria Sky Suites refresh · $14M</div>
+                  <div class="text-xs text-ink-700">2019</div>
+                </div>
+                <p class="text-sm text-ink-700 mt-1">Phased FF&E + millwork refresh across 60 keys while live. Zero guest displacement.</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="lg:col-span-2 space-y-5">
-          <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
-            <h3 class="font-semibold">About</h3>
-            <p class="text-sm text-ink-800 mt-3 leading-relaxed">Senior FP&A operator with 11 years at Amazon and Salesforce. Owned the 3-year plan for a $1.2B AWS sub-segment, built the headcount model the CFO presented to the board, and ran the quarterly forecast cycle for a 600-person org.</p>
-            <button class="mt-4 text-xs font-semibold underline">Edit</button>
+        <aside class="space-y-6">
+          <div class="bg-ink-950 text-paper rounded-2xl p-6">
+            <div class="text-xs uppercase tracking-widest text-bone/60">Standard rate</div>
+            <div class="font-serif text-4xl font-semibold mt-1">$420<span class="text-base text-bone/60 font-sans font-normal">/hr</span></div>
+            <div class="text-xs text-bone/70 mt-1">Negotiable on milestone deals</div>
           </div>
-
           <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
-            <h3 class="font-semibold">Experience</h3>
-            <div class="mt-4 space-y-4">
-              <div class="flex gap-4">
-                <div class="w-10 h-10 rounded-lg bg-ink-950 text-paper flex items-center justify-center text-xs font-bold shrink-0">A</div>
-                <div>
-                  <div class="font-semibold text-sm">Senior FP&A Manager · Amazon</div>
-                  <div class="text-xs text-ink-700">2019 – 2024</div>
-                  <p class="text-sm text-ink-800 mt-1">Owned planning for AWS Storage sub-segment ($1.2B). Built driver-based model adopted org-wide.</p>
-                </div>
-              </div>
-              <div class="flex gap-4">
-                <div class="w-10 h-10 rounded-lg bg-ink-950 text-paper flex items-center justify-center text-xs font-bold shrink-0">S</div>
-                <div>
-                  <div class="font-semibold text-sm">FP&A Lead · Salesforce</div>
-                  <div class="text-xs text-ink-700">2015 – 2019</div>
-                  <p class="text-sm text-ink-800 mt-1">Sales Cloud BU FP&A. Led ARR forecast, comp plan modeling, and quarterly board prep.</p>
-                </div>
-              </div>
-            </div>
-            <button class="mt-4 text-xs font-semibold underline">+ Add experience</button>
-          </div>
-
-          <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
-            <h3 class="font-semibold">Skills</h3>
-            <div class="mt-3 flex flex-wrap gap-2">
-              <span class="pill bg-bone text-ink-800">Driver models</span>
-              <span class="pill bg-bone text-ink-800">Anaplan</span>
-              <span class="pill bg-bone text-ink-800">3-statement</span>
-              <span class="pill bg-bone text-ink-800">Board decks</span>
-              <span class="pill bg-bone text-ink-800">Headcount</span>
-              <span class="pill bg-bone text-ink-800">SaaS metrics</span>
-              <span class="pill bg-bone text-ink-800">SQL</span>
-              <span class="pill bg-bone text-ink-800">Tableau</span>
-              <button class="pill border border-dashed border-ink-900/20 text-ink-700">+ Add</button>
+            <h4 class="font-semibold mb-3 text-sm">Specialties</h4>
+            <div class="flex flex-wrap gap-1.5 text-xs">
+              <span class="pill bg-bone">Casinos & gaming</span>
+              <span class="pill bg-bone">Hotels & resorts</span>
+              <span class="pill bg-bone">Athlete estates</span>
+              <span class="pill bg-bone">Hospitality FF&E</span>
+              <span class="pill bg-bone">NDA-bound builds</span>
             </div>
           </div>
-
           <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
-            <h3 class="font-semibold">Work samples</h3>
-            <div class="mt-3 grid sm:grid-cols-2 gap-3">
-              <div class="border border-ink-900/10 rounded-xl p-4">
-                <div class="text-xs uppercase tracking-widest text-ink-700">PDF · redacted</div>
-                <div class="font-semibold text-sm mt-1">Board pack – Q3 2023</div>
-                <div class="text-xs text-ink-700 mt-1">22 slides · downloaded 14 times</div>
-              </div>
-              <div class="border border-ink-900/10 rounded-xl p-4">
-                <div class="text-xs uppercase tracking-widest text-ink-700">XLSX · redacted</div>
-                <div class="font-semibold text-sm mt-1">3-statement template</div>
-                <div class="text-xs text-ink-700 mt-1">Driver tree + outputs</div>
-              </div>
-              <button class="border border-dashed border-ink-900/20 rounded-xl p-4 text-sm text-ink-700 hover:bg-bone">+ Upload sample</button>
-            </div>
+            <h4 class="font-semibold mb-2 text-sm">Languages</h4>
+            <div class="text-sm text-ink-700">English (native) · Spanish (fluent)</div>
           </div>
-        </div>
+        </aside>
       </div>
     </section>
 
@@ -541,20 +563,244 @@
 </div>
 
 <script>
-  function showView(name) {
-    document.querySelectorAll('[data-view]').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('main section[data-view="'+name+'"]').forEach(el => el.classList.add('active'));
-    document.querySelectorAll('aside button[data-view]').forEach(el => {
-      el.classList.toggle('active', el.dataset.view === name);
-    });
-    const titles = { dashboard:'Dashboard', briefs:'Open briefs', applications:'My applications', work:'Active work', earnings:'Earnings', profile:'Profile' };
-    document.getElementById('pageTitle').textContent = titles[name] || 'Tier1';
-    window.scrollTo(0,0);
-  }
-  document.querySelectorAll('aside button[data-view]').forEach(btn => {
-    btn.addEventListener('click', () => showView(btn.dataset.view));
-  });
-</script>
+  const JOBS = [
+    {
+      id:'heron',
+      title:'Project Heron · Calabasas hilltop compound',
+      client:'Keystone Family Office',
+      verified:true,
+      principal:'NBA all-star (NDA)',
+      budget:'$48M',
+      length:'14 – 18 months',
+      type:'Estate · ground-up',
+      posted:'2 days ago',
+      location:'Calabasas, CA',
+      match:96,
+      tags:['Estate','NDA','Family office','Owner\'s rep'],
+      summary:'22,000 sqft principal residence with FIBA-spec court, screening room, recording studio, and detached guest lodge. Architect is on board; we need an owner\'s rep PM to manage GC selection, milestone scheduling, and paparazzi-resistant logistics.',
+      mustHave:'Delivered an $25M+ private residence in last 5 years · NDA experience · willing to live on-site 60% of the time',
+      proposals:'12 – 15 sent · client typically responds in 24h'
+    },
+    {
+      id:'marquee',
+      title:'Project Marquee · Vegas Strip casino floor reno',
+      client:'Sterling & Co. Business Management',
+      verified:true,
+      principal:'NFL Pro Bowler (NDA) — naming rights partner',
+      budget:'$8.4M fixed',
+      length:'7 months',
+      type:'Casino · partial reno',
+      posted:'5 days ago',
+      location:'Las Vegas, NV',
+      match:92,
+      tags:['Casino','Gaming licensed','Fixed milestone'],
+      summary:'Refresh of a 14,000 sqft high-limit gaming room inside an existing Strip property. Branded lounge attaches. Must coordinate with property GM and gaming compliance.',
+      mustHave:'NV gaming-floor licensed PM · prior MGM/Caesars/Wynn project · open during live operations',
+      proposals:'8 sent · client responds same-day'
+    },
+    {
+      id:'nautilus',
+      title:'Project Nautilus · 168\' yacht refit',
+      client:'Pelican Trust',
+      verified:true,
+      principal:'NBA Hall of Famer (retired)',
+      budget:'$12M',
+      length:'9 months',
+      type:'Superyacht · refit',
+      posted:'1 week ago',
+      location:'La Ciotat, France',
+      match:78,
+      tags:['Superyacht','Lürssen / Feadship','International'],
+      summary:'Full interior tear-down and re-fit of a 168\' Feadship including new tender garage, gym, and beach club. Owner relocating to vessel for 6 months post-handoff.',
+      mustHave:'Prior 100\'+ refit experience · French-speaking superintendent on team preferred',
+      proposals:'5 sent · client responds in 48h'
+    },
+    {
+      id:'aria',
+      title:'Project Aria · Aman resort villa fit-out',
+      client:'Halcyon Group',
+      verified:true,
+      principal:'NFL franchise owner',
+      budget:'$22M',
+      length:'12 months',
+      type:'Hospitality · branded residence',
+      posted:'1 week ago',
+      location:'Turks & Caicos',
+      match:88,
+      tags:['Branded residence','Caribbean','FF&E heavy'],
+      summary:'Two adjacent villas being combined into a single 9-BR family compound inside the Aman branded residence program. Aman design standards apply.',
+      mustHave:'Aman / Four Seasons / Rosewood project history · Caribbean import/logistics expertise',
+      proposals:'7 sent · client responds in 36h'
+    },
+    {
+      id:'carrera',
+      title:'Project Carrera · Buckhead car gallery + auto spa',
+      client:'Keystone Family Office',
+      verified:true,
+      principal:'NFL quarterback (active)',
+      budget:'$6M',
+      length:'8 months',
+      type:'Specialty · auto display',
+      posted:'2 weeks ago',
+      location:'Atlanta, GA',
+      match:81,
+      tags:['Specialty','Climate-controlled','Display lighting'],
+      summary:'12,000 sqft climate-controlled gallery with rotating turntable display for 18 collector vehicles, attached auto spa, and entertaining mezzanine. Land already prepped.',
+      mustHave:'Specialty MEP for vehicle display · prior collector-grade builds (Pebble Beach / Petersen tier)',
+      proposals:'4 sent · client responds in 24h'
+    },
+    {
+      id:'sable',
+      title:'Project Sable II · Aspen lodge expansion',
+      client:'Halcyon Group',
+      verified:true,
+      principal:'NBA Coach of the Year',
+      budget:'$3.8M',
+      length:'6 months',
+      type:'Estate · expansion',
+      posted:'3 weeks ago',
+      location:'Aspen, CO',
+      match:74,
+      tags:['Mountain','Heated drive','Winter build'],
+      summary:'Add 4,200 sqft of wellness wing including indoor pool, hot/cold plunge suite, and recovery room to an existing lodge. Winter-active site.',
+      mustHave:'Aspen / Vail experience · winter pour & framing crew',
+      proposals:'9 sent · client responds in 48h'
+    }
+  ];
 
+  function escape(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+
+  function renderJobs() {
+    const list = document.getElementById('jobList');
+    list.innerHTML = JOBS.map(j => `
+      <article class="bg-white border border-ink-900/10 hover:border-gold-500 transition rounded-2xl p-6">
+        <div class="flex flex-col lg:flex-row lg:items-start gap-5">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="pill bg-moss-500/15 text-moss-600">${j.match}% match</span>
+              ${j.verified ? '<span class="pill bg-ink-950 text-paper">Verified client</span>' : ''}
+              <span class="text-xs text-ink-700">Posted ${escape(j.posted)} · ${escape(j.location)}</span>
+            </div>
+            <h3 class="font-serif text-xl font-semibold mt-2 hover:underline cursor-pointer" onclick="openJob('${j.id}')">${escape(j.title)}</h3>
+            <div class="text-sm text-ink-700 mt-1">${escape(j.client)} · Principal: <em>${escape(j.principal)}</em></div>
+            <p class="text-sm text-ink-800 mt-3 leading-relaxed">${escape(j.summary)}</p>
+            <div class="flex flex-wrap gap-1.5 mt-4">
+              ${j.tags.map(t=>`<span class="pill bg-bone">${escape(t)}</span>`).join('')}
+            </div>
+          </div>
+          <div class="lg:w-56 lg:border-l lg:border-ink-900/10 lg:pl-5 shrink-0">
+            <div class="text-xs uppercase tracking-widest text-ink-700">Budget</div>
+            <div class="font-serif text-2xl font-semibold">${escape(j.budget)}</div>
+            <div class="text-xs text-ink-700 mt-1">${escape(j.length)} · ${escape(j.type)}</div>
+            <div class="text-xs text-ink-700 mt-3">${escape(j.proposals)}</div>
+            <div class="mt-4 flex flex-col gap-2">
+              <button onclick="openApply('${j.id}')" class="text-sm bg-ink-950 hover:bg-ink-800 text-paper font-semibold px-4 py-2 rounded-full">Apply</button>
+              <button onclick="openJob('${j.id}')" class="text-sm border border-ink-900/15 hover:bg-bone px-4 py-2 rounded-full">View details</button>
+            </div>
+          </div>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  let _lastJobId = null;
+
+  function openJob(id) {
+    const j = JOBS.find(x=>x.id===id);
+    if (!j) return;
+    _lastJobId = id;
+    document.getElementById('jobDetail').innerHTML = `
+      <div class="grid lg:grid-cols-[1fr_320px] gap-8">
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="pill bg-moss-500/15 text-moss-600">${j.match}% match</span>
+            ${j.verified ? '<span class="pill bg-ink-950 text-paper">Verified client</span>' : ''}
+            <span class="text-xs text-ink-700">Posted ${escape(j.posted)} · ${escape(j.location)}</span>
+          </div>
+          <h2 class="font-serif text-3xl font-semibold mt-3">${escape(j.title)}</h2>
+          <div class="text-sm text-ink-700 mt-1">${escape(j.client)} · Principal: <em>${escape(j.principal)}</em></div>
+
+          <h3 class="font-semibold mt-8 mb-2">Program brief</h3>
+          <p class="text-sm leading-relaxed text-ink-800">${escape(j.summary)}</p>
+
+          <h3 class="font-semibold mt-8 mb-2">What the client expects</h3>
+          <ul class="list-disc pl-5 text-sm text-ink-800 space-y-1.5">
+            <li>${escape(j.mustHave)}</li>
+            <li>Weekly milestone deck delivered to the family office.</li>
+            <li>Discretion: no social posts, no GC name-drops, no plate logs.</li>
+            <li>Bond and insurance verified before contract signing.</li>
+          </ul>
+
+          <h3 class="font-semibold mt-8 mb-2">Activity</h3>
+          <div class="bg-white border border-ink-900/10 rounded-2xl divide-y divide-ink-900/5 text-sm">
+            <div class="px-4 py-3 flex justify-between"><span>Total proposals</span><span class="font-semibold">${escape(j.proposals.split(' · ')[0])}</span></div>
+            <div class="px-4 py-3 flex justify-between"><span>Interviewing</span><span class="font-semibold">2</span></div>
+            <div class="px-4 py-3 flex justify-between"><span>Client response time</span><span class="font-semibold">${escape(j.proposals.split(' · ')[1] || '—')}</span></div>
+            <div class="px-4 py-3 flex justify-between"><span>Hired on Tier1 before</span><span class="font-semibold">Yes · 3 programs</span></div>
+          </div>
+        </div>
+
+        <aside class="space-y-5">
+          <div class="bg-ink-950 text-paper rounded-2xl p-6">
+            <div class="text-xs uppercase tracking-widest text-bone/60">Budget envelope</div>
+            <div class="font-serif text-3xl font-semibold mt-1">${escape(j.budget)}</div>
+            <div class="text-xs text-bone/70 mt-1">${escape(j.length)} · ${escape(j.type)}</div>
+            <button onclick="openApply('${j.id}')" class="mt-5 w-full bg-gold-500 hover:bg-gold-600 text-ink-950 font-semibold py-2.5 rounded-full text-sm">Apply now</button>
+            <button class="mt-2 w-full border border-white/20 hover:bg-white/5 text-paper py-2.5 rounded-full text-sm">Save for later</button>
+          </div>
+          <div class="bg-white border border-ink-900/10 rounded-2xl p-6">
+            <div class="text-xs uppercase tracking-widest text-ink-700">About the client</div>
+            <div class="font-serif text-lg font-semibold mt-1">${escape(j.client)}</div>
+            <div class="text-xs text-ink-700 mt-2 space-y-1">
+              <div>★★★★★ · 4.9 from 12 PMs</div>
+              <div>$84M paid out through Tier1</div>
+              <div>Member since 2023</div>
+            </div>
+          </div>
+          <div class="bg-bone border border-ink-900/10 rounded-2xl p-5 text-xs text-ink-700">
+            All communication, files, and payment must flow through Tier1 until contract signing. Off-platform contact attempts are auto-flagged.
+          </div>
+        </aside>
+      </div>
+    `;
+    showView('job');
+  }
+
+  function openApply(id) {
+    const j = JOBS.find(x=>x.id===id);
+    if (!j) return;
+    _lastJobId = id;
+    document.getElementById('applyTitle').textContent = j.title;
+    document.getElementById('applyMeta').textContent = `${j.client} · ${j.budget} · ${j.length}`;
+    showView('apply');
+  }
+
+  function goBackToJob() {
+    if (_lastJobId) openJob(_lastJobId);
+    else showView('find');
+  }
+
+  document.getElementById('applyForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Proposal submitted (demo). In production this would queue to the client\'s shortlist and notify Sasha K. via email + Tier1 inbox.');
+    showView('proposals');
+  });
+
+  // VIEW ROUTING
+  function showView(name) {
+    document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.dataset.view === name));
+    document.querySelectorAll('[data-view]').forEach(b => {
+      if (b.classList.contains('nav-link')) b.classList.toggle('active', b.dataset.view === name || (name==='job' && b.dataset.view==='find') || (name==='apply' && b.dataset.view==='find'));
+    });
+    const titles = { find:'Find work', job:'Program detail', apply:'Submit a proposal', proposals:'My proposals', contracts:'Active contracts', messages:'Messages', earnings:'Earnings', profile:'Profile' };
+    document.getElementById('pageTitle').textContent = titles[name] || 'PM workspace';
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+  document.querySelectorAll('.nav-link[data-view]').forEach(el => {
+    el.addEventListener('click', () => showView(el.dataset.view));
+  });
+
+  renderJobs();
+</script>
 </body>
 </html>
