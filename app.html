@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tier1 · Sign in</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    fontFamily: { sans:['Inter','sans-serif'], serif:['Fraunces','serif'] },
+    colors: {
+      ink:{950:'#0A0E1A',900:'#0F1524',800:'#171F33',700:'#222C45'},
+      paper:'#F7F5EF', bone:'#EEEAE0',
+      gold:{500:'#C9A24B',600:'#B6902F'},
+      moss:{500:'#4F7A5B',600:'#3F6249'},
+    }
+  }}}
+</script>
+<style>
+  body { font-family:'Inter',sans-serif; background:#F7F5EF; color:#0F1524; }
+  .font-serif { font-family:'Fraunces',serif; letter-spacing:-0.02em; }
+  .hero { background:
+    radial-gradient(60% 50% at 80% 0%, rgba(201,162,75,0.12) 0%, rgba(201,162,75,0) 60%),
+    radial-gradient(60% 60% at 0% 100%, rgba(79,122,91,0.15) 0%, rgba(79,122,91,0) 60%),
+    #F7F5EF; }
+</style>
+</head>
+<body class="antialiased min-h-screen hero">
+
+<header class="border-b border-ink-900/5">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-md bg-ink-900 flex items-center justify-center">
+        <span class="font-serif font-semibold text-paper text-sm">T</span>
+        <span class="w-1 h-1 bg-gold-500 rounded-full ml-0.5"></span>
+      </div>
+      <span class="font-serif text-xl font-semibold tracking-tight">Tier1</span>
+    </a>
+    <a href="index.html" class="text-sm text-ink-800 hover:text-ink-950">← Home</a>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-5 lg:px-8 py-16 lg:py-24">
+  <div class="text-center mb-12">
+    <h1 class="font-serif text-4xl lg:text-5xl font-semibold">Welcome back.</h1>
+    <p class="mt-3 text-ink-700">Choose how you're using Tier1 today.</p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+    <a href="client.html" class="group block bg-white border border-ink-900/10 rounded-2xl p-8 hover:border-gold-500 hover:shadow-lg transition">
+      <div class="w-12 h-12 rounded-xl bg-ink-950 flex items-center justify-center mb-5">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A24B" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h.01M15 17h.01"/></svg>
+      </div>
+      <div class="text-xs uppercase tracking-widest text-ink-700">For companies</div>
+      <h2 class="font-serif text-2xl font-semibold mt-1">I'm hiring</h2>
+      <p class="text-sm text-ink-700 mt-2">Post briefs, review shortlists, manage active engagements and pay through escrow.</p>
+      <div class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink-950">
+        Open client workspace
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </div>
+    </a>
+
+    <a href="operator.html" class="group block bg-ink-950 text-paper rounded-2xl p-8 hover:shadow-2xl transition relative overflow-hidden">
+      <div class="absolute -top-12 -right-12 w-40 h-40 bg-gold-500/20 rounded-full blur-3xl"></div>
+      <div class="relative">
+        <div class="w-12 h-12 rounded-xl bg-gold-500 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A0E1A" stroke-width="2.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="text-xs uppercase tracking-widest text-bone/60">For operators</div>
+        <h2 class="font-serif text-2xl font-semibold mt-1">I'm working</h2>
+        <p class="text-sm text-bone/80 mt-2">Browse open briefs, manage applications, track earnings and ship deliverables.</p>
+        <div class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-500">
+          Open operator workspace
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="text-center mt-10">
+    <a href="admin.html" class="text-xs text-ink-700 hover:text-ink-950">Tier1 staff? Admin →</a>
+  </div>
+</main>
+
+</body>
+</html>
