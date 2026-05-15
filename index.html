@@ -645,18 +645,18 @@
       <div class="relative">
         <span class="chip mb-5">Brief us</span>
         <h2 class="font-serif text-4xl lg:text-5xl font-semibold leading-tight max-w-3xl">Tell us the desk you need filled. We'll have three operators on your screen by Wednesday.</h2>
-        <form class="mt-10 grid sm:grid-cols-2 gap-4">
+        <form id="briefForm" class="mt-10 grid sm:grid-cols-2 gap-4">
           <div class="sm:col-span-1">
             <label class="text-xs font-semibold text-ink-700 uppercase tracking-wider">Name</label>
-            <input type="text" class="mt-1 w-full bg-white border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500" placeholder="Jamie Doe" />
+            <input name="name" required type="text" class="mt-1 w-full bg-white border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500" placeholder="Jamie Doe" />
           </div>
           <div class="sm:col-span-1">
             <label class="text-xs font-semibold text-ink-700 uppercase tracking-wider">Work email</label>
-            <input type="email" class="mt-1 w-full bg-white border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500" placeholder="jamie@company.com" />
+            <input name="email" required type="email" class="mt-1 w-full bg-white border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500" placeholder="jamie@company.com" />
           </div>
           <div class="sm:col-span-1">
             <label class="text-xs font-semibold text-ink-700 uppercase tracking-wider">Specialty needed</label>
-            <select class="mt-1 w-full bg-white border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500">
+            <select name="specialty" class="mt-1 w-full bg-white border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500">
               <option>FP&A</option><option>Treasury</option><option>Controllership</option>
               <option>M&A / Integration</option><option>Revenue Ops</option><option>Tax</option>
               <option>Investor Relations</option><option>Systems / ERP</option><option>Not sure yet</option>
@@ -664,7 +664,7 @@
           </div>
           <div class="sm:col-span-1">
             <label class="text-xs font-semibold text-ink-700 uppercase tracking-wider">Engagement length</label>
-            <select class="mt-1 w-full bg-white border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500">
+            <select name="length" class="mt-1 w-full bg-white border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500">
               <option>One-off project (under 4 weeks)</option>
               <option>4–12 weeks</option>
               <option>3–6 months</option>
@@ -673,16 +673,38 @@
           </div>
           <div class="sm:col-span-2">
             <label class="text-xs font-semibold text-ink-700 uppercase tracking-wider">What's the brief?</label>
-            <textarea rows="4" class="mt-1 w-full bg-white border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500" placeholder="e.g., We need a 13-week cash forecast and lender pack before our next board meeting on June 18."></textarea>
+            <textarea name="brief" rows="4" class="mt-1 w-full bg-white border border-ink-900/10 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500" placeholder="e.g., We need a 13-week cash forecast and lender pack before our next board meeting on June 18."></textarea>
           </div>
           <div class="sm:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
             <div class="text-xs text-ink-700">By submitting, you agree to our NDA template and a 24-hour response SLA.</div>
-            <button type="button" class="inline-flex items-center gap-2 bg-ink-950 hover:bg-ink-800 text-paper font-semibold px-7 py-3.5 rounded-full transition">
+            <button type="submit" class="inline-flex items-center gap-2 bg-ink-950 hover:bg-ink-800 text-paper font-semibold px-7 py-3.5 rounded-full transition">
               Request shortlist
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </button>
           </div>
+          <div id="briefSuccess" class="sm:col-span-2 hidden bg-moss-500/10 border border-moss-500/30 text-moss-600 rounded-xl px-4 py-3 text-sm font-medium">
+            Thanks — your brief is in. We'll send three operators within 36 hours.
+          </div>
         </form>
+        <script>
+          (function() {
+            const form = document.getElementById('briefForm');
+            const success = document.getElementById('briefSuccess');
+            form.addEventListener('submit', function(e) {
+              e.preventDefault();
+              const data = Object.fromEntries(new FormData(form).entries());
+              data.submittedAt = new Date().toISOString();
+              data.userAgent = navigator.userAgent;
+              const key = 'tier1_submissions';
+              const existing = JSON.parse(localStorage.getItem(key) || '[]');
+              existing.push(data);
+              localStorage.setItem(key, JSON.stringify(existing));
+              form.reset();
+              success.classList.remove('hidden');
+              setTimeout(() => success.classList.add('hidden'), 6000);
+            });
+          })();
+        </script>
       </div>
     </div>
   </div>
